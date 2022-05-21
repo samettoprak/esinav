@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import React, { useState } from "react";
+import AnaSayfa from "./Components/AnaSayfa";
+import Sinav from "./Components/Sinav";
+import SonucEkrani from "./Components/SonucEkrani";
+import { QuizContext } from "./Helpers/Context";
+import Sinavlarim from "./Components/Sinavlarim";
+import SinavOlustur from "./Components/SinavOlustur";
 function App() {
+  const [sayfaState, setSayfaState] = useState("AnaSayfa");
+  const [sonuc,setSonuc]=useState(0)
+  const [eposta, setEposta] = useState("");
+  const [sifre, setSifre] = useState("");
+  const [chosenDers, setChosenDers] = useState("");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Quiz App</h1>
+      <QuizContext.Provider value={{sayfaState,setSayfaState,sonuc,setSonuc,eposta,setEposta,sifre,setSifre,chosenDers,setChosenDers}}>
+      {sayfaState === "AnaSayfa" && <AnaSayfa />}
+      {sayfaState === "Sinav" && <Sinav />}
+      {sayfaState === "SonucEkrani" && <SonucEkrani />}
+      {sayfaState === "Sinavlarim" && <Sinavlarim />}
+      {sayfaState === "SinavOlustur" && <SinavOlustur />}
+      </QuizContext.Provider>
     </div>
   );
 }
