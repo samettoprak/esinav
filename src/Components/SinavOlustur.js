@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Sorular } from "../Helpers/Vizeler";
+import { Vizeler } from "../Helpers/Vizeler";
+import { Finaller } from "../Helpers/Finaller";
 import { useContext } from "react";
 import { QuizContext } from "../Helpers/Context";
 import "../Tasarim/sinavOlustur.css";
@@ -18,7 +19,46 @@ export default function SinavOlustur() {
   const [cevap, setCevap] = useState("");
 
   function soruyuEkle() {
-    
+    let a = Vizeler.length
+    let gecici = [
+      {
+        ders: dersAdi,
+        soru: soru,
+        cevapA: cevapA,
+        cevapB: cevapB,
+        cevapC: cevapC,
+        cevapD: cevapD,
+        cevapE: cevapE,
+        cevap: cevap,
+      },
+    ];
+    if (sinavTuru === "vize") {
+      Vizeler.push({
+        ders: dersAdi,
+        soru: soru,
+        cevapA: cevapA,
+        cevapB: cevapB,
+        cevapC: cevapC,
+        cevapD: cevapD,
+        cevapE: cevapE,
+        cevap: cevap,
+      })
+    }
+    else if (sinavTuru === "final") {
+      Finaller.push({
+        ders: dersAdi,
+        soru: soru,
+        cevapA: cevapA,
+        cevapB: cevapB,
+        cevapC: cevapC,
+        cevapD: cevapD,
+        cevapE: cevapE,
+        cevap: cevap,
+      })
+    }
+    else {
+      alert("Tüm alanları Doldurunuz");
+    }
   }
   const dersler = [
     {
@@ -67,7 +107,22 @@ export default function SinavOlustur() {
     },
   ];
   function a() {
-    console.log(dersAdi, sinavTuru,cevap,cevapA,cevapB,cevapC,cevapD,cevapE,soru);
+    console.log(Vizeler)
+    console.log(Finaller)
+    console.log(
+      dersAdi,
+      sinavTuru,
+      cevap,
+      cevapA,
+      cevapB,
+      cevapC,
+      cevapD,
+      cevapE,
+      soru
+    );
+  }
+  function ebe(){
+    setSayfaState("AnaSayfa")
   }
 
   return (
@@ -118,6 +173,8 @@ export default function SinavOlustur() {
       <div>
         <button onClick={a}>Soruyu Ekle</button>
         <button onClick={soruyuEkle}>Sınavı Tamanla</button>
+        <button onClick={ebe}></button>
+        
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import SonucEkrani from "./Components/SonucEkrani";
 import { QuizContext } from "./Helpers/Context";
 import Sinavlarim from "./Components/Sinavlarim";
 import SinavOlustur from "./Components/SinavOlustur";
+
 function App() {
   const [sayfaState, setSayfaState] = useState("AnaSayfa");
   const [sonuc,setSonuc]=useState(0)
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <div className="App">
+      
       <QuizContext.Provider value={{sayfaState,setSayfaState,sonuc,setSonuc,eposta,setEposta,sifre,setSifre,chosenDers,setChosenDers,chosenTur,setChosenTur}}>
       {sayfaState === "AnaSayfa" && <AnaSayfa />}
       {sayfaState === "Sinav" && <Sinav />}
