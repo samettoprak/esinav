@@ -1,52 +1,78 @@
 import React, { useState, useContext } from "react";
 import { Vizeler } from "../Helpers/Vizeler";
 import { QuizContext } from "../Helpers/Context";
-
-
-export default function Sinav(props) {
+import { Finaller } from "../Helpers/Finaller";
+import "../Tasarim/sinav.css";
+export default function Sinav() {
   const [currentSoru, setCurrentSoru] = useState(0);
   const [secilenCevap, setSecilenCevap] = useState("");
-  const { sonuc, setSonuc, setSayfaState } =
+  const { sonuc, setSonuc, setSayfaState, chosenDers, chosenTur } =
     useContext(QuizContext);
+
+  let istenilenSinav = [];
+
+  if (chosenTur === "Vize") {
+    for (let i = 0; i < Vizeler.length; i++) {
+      if (Vizeler[i].ders === chosenDers) {
+        istenilenSinav.push(Vizeler[i]);
+      }
+    }
+  } else if (chosenTur === "Final") {
+    for (let i = 0; i < Finaller.length; i++) {
+      if (Finaller[i].ders === chosenDers) {
+        istenilenSinav.push(Finaller[i]);
+      }
+    }
+  }
+
   const nextQuestion = () => {
-    if (Vizeler[currentSoru].cevap === secilenCevap) {
+    if (istenilenSinav[currentSoru].cevap === secilenCevap) {
       setSonuc(sonuc + 1);
     }
     setCurrentSoru(currentSoru + 1);
+  };
+  const prevQuestion = () => {
     
+    setCurrentSoru(currentSoru - 1);
   };
 
   const sonSoru = () => {
     if (Vizeler[currentSoru].cevap === secilenCevap) {
-        setSonuc(sonuc + 1);
-      }
+      setSonuc(sonuc + 1);
+    }
     setSayfaState("SonucEkrani");
   };
 
   return (
-    <div className="Quiz">
-      <h1>{Vizeler[0].matematik.vize[currentSoru].soru}</h1>
-      <div className="cevaplar">
+    <div className="sinav">
+      <h1 className="soru">{istenilenSinav[currentSoru].soru}</h1>
+      <div className="cevap">
         <button onClick={() => setSecilenCevap("A")}>
-          {Vizeler[0].matematik.vize[currentSoru].cevapA}
+          {istenilenSinav[currentSoru].cevapA}
         </button>
         <button onClick={() => setSecilenCevap("B")}>
-          {Vizeler[0].matematik.vize[currentSoru].cevapB}
+          {istenilenSinav[currentSoru].cevapB}
         </button>
         <button onClick={() => setSecilenCevap("C")}>
-          {Vizeler[0].matematik.vize[currentSoru].cevapC}
+          {istenilenSinav[currentSoru].cevapC}
         </button>
         <button onClick={() => setSecilenCevap("D")}>
-          {Vizeler[0].matematik.vize[currentSoru].cevapD}
+          {istenilenSinav[currentSoru].cevapD}
         </button>
         <button onClick={() => setSecilenCevap("E")}>
-          {Vizeler[0].matematik.vize[currentSoru].cevapE}
+          {istenilenSinav[currentSoru].cevapE}
         </button>
       </div>
-      {currentSoru === Vizeler[0].matematik.vize[currentSoru].length - 1 ? (
-        <button onClick={sonSoru}>Sınavı Bitir</button>
-      ) : (
+      {currentSoru === 0 && (
         <button onClick={nextQuestion}>Sıradaki Soru</button>
+      )}
+      {currentSoru > 0 && currentSoru !== istenilenSinav.length - 1 && (
+        <button onClick={nextQuestion}>Sıradaki Soru</button>
+      )}
+      {currentSoru > 0 && <button onClick={prevQuestion}>önceki Soru</button>}
+
+      {currentSoru === istenilenSinav.length - 1 && (
+        <button onClick={sonSoru}>Sınavı Bitir</button>
       )}
     </div>
   );

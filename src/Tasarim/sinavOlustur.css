@@ -1,0 +1,9 @@
+.cevaplar{
+    display: flex;
+    flex-direction: column;
+
+}
+.cevap{
+    display: flex;
+    flex-direction: column;
+}

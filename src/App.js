@@ -12,11 +12,11 @@ function App() {
   const [eposta, setEposta] = useState("");
   const [sifre, setSifre] = useState("");
   const [chosenDers, setChosenDers] = useState("");
+  const [chosenTur, setChosenTur] = useState("");
 
   return (
     <div className="App">
-      <h1>Quiz App</h1>
-      <QuizContext.Provider value={{sayfaState,setSayfaState,sonuc,setSonuc,eposta,setEposta,sifre,setSifre,chosenDers,setChosenDers}}>
+      <QuizContext.Provider value={{sayfaState,setSayfaState,sonuc,setSonuc,eposta,setEposta,sifre,setSifre,chosenDers,setChosenDers,chosenTur,setChosenTur}}>
       {sayfaState === "AnaSayfa" && <AnaSayfa />}
       {sayfaState === "Sinav" && <Sinav />}
       {sayfaState === "SonucEkrani" && <SonucEkrani />}

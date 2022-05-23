@@ -1,9 +1,18 @@
 .App{
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
-  justify-content: center;
+  justify-content: center;/*ne işe yarıyo*/
   align-items: center;
   flex-direction: column;
+  padding: 30px;
+}
+label{
+  padding-top: 10px;
+}
+input{
+  border-radius: 5px;
+  width: 200px;
+  padding: 3px;
 }
 .Menu{
   width: 500px;
@@ -14,13 +23,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: aliceblue;
 }
 .Menu button {
   width: 300px;
   height: 50px;
   margin: 5px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 20px;
   cursor: pointer;
+  
+}
+.Logo{
+  width: 200px;
+  height: 200px;
 }

@@ -1,12 +1,18 @@
 import { Ogrenciler } from "../Helpers/Ogrenciler";
 
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { QuizContext } from "../Helpers/Context";
-import { Vizeler } from "../Helpers/Vizeler";
+import "../Tasarim/sinavlarim.css";
 
 export default function Sinavlarim() {
-  const { eposta,chosenDers,setChosenDers, setSayfaState } = useContext(QuizContext);
-  
+  const {
+    eposta,
+    setChosenDers,
+    setSayfaState,
+    setChosenTur,
+    chosenTur,
+    chosenDers,
+  } = useContext(QuizContext);
 
   let takenLessons = [];
   Ogrenciler.forEach((ogrenci) => {
@@ -20,27 +26,33 @@ export default function Sinavlarim() {
       });
     }
   });
-  function deneme() {
+  //function deneme() {
+  //  console.log(chosenDers);
+  // let b="matematik"
+  // console.log(Vizeler[0])
+  //  Vizeler.forEach((element) => {});
+  //}
+  function vizeyeGit() {
+    //setSayfaState("Sınav");
+    setChosenTur("Vize");
+  }
+
+  function finaleGit() {
+    setChosenTur("Final");
+  }
+  function sinavaBasla() {
+    setSayfaState("Sinav");
     console.log(chosenDers);
+    console.log(chosenTur);
   }
-  function vizeyeGit(){
-      setSayfaState("Sınav");
-
-      
-
-
-  }
-  
-function finaleGit(){
-
-}
   return (
-    <div>
-      <div>
-        <button onClick={deneme}>Vize</button>
+    <div className="sayfa">
+      <div className="tur">
+        <button onClick={vizeyeGit}>Vize</button>
         <button onClick={finaleGit}>Final</button>
       </div>
-      <div>{takenLessons}</div>
+      <div className="sinavlarim">{takenLessons}</div>
+      <button className="basla" onClick={sinavaBasla}>Sınava Başla</button>
     </div>
   );
 }

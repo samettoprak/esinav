@@ -17,6 +17,6 @@ export const Ogrenciler = [
     soyad: "admin",
     eposta: "admin",
     sifre: "admin",
-    dersler:["outocat","fizik","deneme"]
+    dersler:["outocat","fizik","deneme","matematik"]
   }
 ];
