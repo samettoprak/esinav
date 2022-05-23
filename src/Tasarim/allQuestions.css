@@ -1,0 +1,17 @@
+.all{
+    padding: 10px;
+
+    margin-top: 10px;
+}
+
+.allQ{
+
+    padding: 5px;
+    border-radius: 10px;
+}
+.allAnswers{
+    display: flex;
+    flex-direction: column;
+   
+
+}

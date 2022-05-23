@@ -20,8 +20,9 @@ export default function AnaSayfa() {
           setSayfaState("Sinavlarim");
         }
       }
-      console.log("giriş başarısız");
+      
     });
+    alert("Hatal şifre-eposta")
   }
 
   return (

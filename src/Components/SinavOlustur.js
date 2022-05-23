@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Vizeler } from "../Helpers/Vizeler";
 import { Finaller } from "../Helpers/Finaller";
 import { useContext } from "react";
 import { QuizContext } from "../Helpers/Context";
 import "../Tasarim/sinavOlustur.css";
 import Select from "react-select";
+import AllQuestions from "./AllQuestions";
+import { Dersler } from "../Helpers/Dersler";
 
 export default function SinavOlustur() {
   const { setSayfaState } = useContext(QuizContext);
@@ -17,98 +19,13 @@ export default function SinavOlustur() {
   const [cevapD, setCevapD] = useState("");
   const [cevapE, setCevapE] = useState("");
   const [cevap, setCevap] = useState("");
+  const [dizia, setDizia] = useState([]);
+  const [dizib, setDizib] = useState([]);
 
-  function soruyuEkle() {
-    let a = Vizeler.length
-    let gecici = [
-      {
-        ders: dersAdi,
-        soru: soru,
-        cevapA: cevapA,
-        cevapB: cevapB,
-        cevapC: cevapC,
-        cevapD: cevapD,
-        cevapE: cevapE,
-        cevap: cevap,
-      },
-    ];
-    if (sinavTuru === "vize") {
-      Vizeler.push({
-        ders: dersAdi,
-        soru: soru,
-        cevapA: cevapA,
-        cevapB: cevapB,
-        cevapC: cevapC,
-        cevapD: cevapD,
-        cevapE: cevapE,
-        cevap: cevap,
-      })
-    }
-    else if (sinavTuru === "final") {
-      Finaller.push({
-        ders: dersAdi,
-        soru: soru,
-        cevapA: cevapA,
-        cevapB: cevapB,
-        cevapC: cevapC,
-        cevapD: cevapD,
-        cevapE: cevapE,
-        cevap: cevap,
-      })
-    }
-    else {
-      alert("Tüm alanları Doldurunuz");
-    }
-  }
-  const dersler = [
-    {
-      value: "matematik",
-      label: "Matematik",
-    },
-    {
-      value: "fizik",
-      label: "Fizik",
-    },
-    {
-      value: "java",
-      label: "Java",
-    },
-  ];
-  const turler = [
-    {
-      value: "vize",
-      label: "Vize",
-    },
-    {
-      value: "final",
-      label: "Final",
-    },
-  ];
-  const cevaplar = [
-    {
-      value: "A",
-      label: "A",
-    },
-    {
-      value: "B",
-      label: "B",
-    },
-    {
-      value: "C",
-      label: "C",
-    },
-    {
-      value: "D",
-      label: "D",
-    },
-    {
-      value: "E",
-      label: "E",
-    },
-  ];
   function a() {
-    console.log(Vizeler)
-    console.log(Finaller)
+    //kontrol 
+    console.log(Vizeler);
+    console.log(Finaller);
     console.log(
       dersAdi,
       sinavTuru,
@@ -120,9 +37,72 @@ export default function SinavOlustur() {
       cevapE,
       soru
     );
+    console.log(dizia);
+    console.log(dizib);
   }
-  function ebe(){
-    setSayfaState("AnaSayfa")
+  const turler = [
+    { value: "vize", label: "Vize" },
+    { value: "final", label: "Final" },
+  ];
+  const cevaplar = [
+    { value: "A", label: "A" },
+    { value: "B", label: "B" },
+    { value: "C", label: "C" },
+    { value: "D", label: "D" },
+    { value: "E", label: "E" },
+  ];
+
+  useEffect(()=>{setDizib(
+    dizia.map((i) => (
+      <AllQuestions
+        key={i.soru}
+        soru={i.soru}
+        cevapA={i.cevapA}
+        cevapB={i.cevapB}
+        cevapC={i.cevapC}
+        cevapD={i.cevapD}
+        cevapE={i.cevapE}
+        cevap={i.cevap}
+      ></AllQuestions>
+    ))
+  );},[dizia])
+
+  function soruyuEkle() {
+    if (sinavTuru === "vize") {
+
+      setDizia((oldarray) => [
+        ...oldarray,
+        {
+          ders: dersAdi,
+          soru: soru,
+          cevapA: cevapA,
+          cevapB: cevapB,
+          cevapC: cevapC,
+          cevapD: cevapD,
+          cevapE: cevapE,
+          cevap: cevap,
+        },
+      ]);
+      
+      
+    } else if (sinavTuru === "final") {
+      Finaller.push({
+        ders: dersAdi,
+        soru: soru,
+        cevapA: cevapA,
+        cevapB: cevapB,
+        cevapC: cevapC,
+        cevapD: cevapD,
+        cevapE: cevapE,
+        cevap: cevap,
+      });
+    } else {
+      alert("Tüm alanları Doldurunuz");
+    }
+  }
+
+  function ebe() {
+    setSayfaState("AnaSayfa");
   }
 
   return (
@@ -131,14 +111,14 @@ export default function SinavOlustur() {
       <div>
         <label>Ders Giriniz</label>
         <Select
-          options={dersler}
+          options={Dersler}
           onChange={(e) => {
             setDersAdi(e.value);
           }}
         ></Select>
       </div>
       <div>
-        <label>Dersin Türünü Seçiniz</label>
+        <label>Sınavın Türünü Seçiniz</label>
         <div>
           <Select
             options={turler}
@@ -173,9 +153,9 @@ export default function SinavOlustur() {
       <div>
         <button onClick={a}>Soruyu Ekle</button>
         <button onClick={soruyuEkle}>Sınavı Tamanla</button>
-        <button onClick={ebe}></button>
-        
+        <button onClick={ebe}>Çıkış Yap</button>
       </div>
+      {dizib}
     </div>
   );
 }
