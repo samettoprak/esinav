@@ -4,7 +4,7 @@ export const Ogrenciler = [
     soyad: "Toprak",
     eposta: "samet",
     sifre: "samet",
-    dersler:["matematik","fizik"]
+    dersler:["matematik","fizik","java"]
   },
   {
     ad: "Burhan",

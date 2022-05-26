@@ -22,7 +22,7 @@ export default function AnaSayfa() {
       }
       
     });
-    alert("Hatal şifre-eposta")
+    
   }
 
   return (

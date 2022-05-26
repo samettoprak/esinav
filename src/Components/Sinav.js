@@ -20,6 +20,8 @@ export default function Sinav() {
     setStudentName,
     setStudentSurname,
     studentName,
+    results,
+    setResults
   } = useContext(QuizContext);
   
   

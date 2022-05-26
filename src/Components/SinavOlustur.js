@@ -3,11 +3,10 @@ import { Vizeler } from "../Helpers/Vizeler";
 import { Finaller } from "../Helpers/Finaller";
 import { useContext } from "react";
 import { QuizContext } from "../Helpers/Context";
-import "../Tasarim/sinavOlustur.css";
+import { Dersler } from "../Helpers/Dersler";
 import Select from "react-select";
 import AllQuestions from "./AllQuestions";
-import { Dersler } from "../Helpers/Dersler";
-
+import "../Tasarim/sinavOlustur.css";
 
 export default function SinavOlustur() {
   const { setSayfaState } = useContext(QuizContext);
@@ -20,26 +19,17 @@ export default function SinavOlustur() {
   const [cevapD, setCevapD] = useState("");
   const [cevapE, setCevapE] = useState("");
   const [cevap, setCevap] = useState("");
-  const [dizia, setDizia] = useState([]);
-  const [dizib, setDizib] = useState([]);
+  const [tempVize, settempVize] = useState([]); //vizeler
+  const [questionArray, setquestionArray] = useState([]); // sorular
+  const [tempFinal, settempFinal] = useState([]); //finaller
 
   function a() {
-    //kontrol 
+    //kontrol
     console.log(Vizeler);
     console.log(Finaller);
-    console.log(
-      dersAdi,
-      sinavTuru,
-      cevap,
-      cevapA,
-      cevapB,
-      cevapC,
-      cevapD,
-      cevapE,
-      soru
-    );
-    console.log(dizia);
-    console.log(dizib);
+    console.log(tempVize);
+    console.log(tempFinal);
+    console.log(questionArray);
   }
   const turler = [
     { value: "vize", label: "Vize" },
@@ -53,25 +43,43 @@ export default function SinavOlustur() {
     { value: "E", label: "E" },
   ];
 
-  useEffect(()=>{setDizib(
-    dizia.map((i) => (
-      <AllQuestions
-        key={i.soru}
-        soru={i.soru}
-        cevapA={i.cevapA}
-        cevapB={i.cevapB}
-        cevapC={i.cevapC}
-        cevapD={i.cevapD}
-        cevapE={i.cevapE}
-        cevap={i.cevap}
-      ></AllQuestions>
-    ))
-  );},[dizia])
+  useEffect(() => {
+    setquestionArray(
+      tempVize.map((i) => (
+        <AllQuestions
+          key={i.soru}
+          soru={i.soru}
+          cevapA={i.cevapA}
+          cevapB={i.cevapB}
+          cevapC={i.cevapC}
+          cevapD={i.cevapD}
+          cevapE={i.cevapE}
+          cevap={i.cevap}
+        ></AllQuestions>
+      ))
+    );
+  }, [tempVize]);
+
+  useEffect(() => {
+    setquestionArray(
+      tempFinal.map((i) => (
+        <AllQuestions
+          key={i.soru}
+          soru={i.soru}
+          cevapA={i.cevapA}
+          cevapB={i.cevapB}
+          cevapC={i.cevapC}
+          cevapD={i.cevapD}
+          cevapE={i.cevapE}
+          cevap={i.cevap}
+        ></AllQuestions>
+      ))
+    );
+  }, [tempFinal]);
 
   function soruyuEkle() {
     if (sinavTuru === "vize") {
-
-      setDizia((oldarray) => [
+      settempVize((oldarray) => [
         ...oldarray,
         {
           ders: dersAdi,
@@ -84,26 +92,55 @@ export default function SinavOlustur() {
           cevap: cevap,
         },
       ]);
-      
-      
+      document.getElementById("inputA").value = "";
+      document.getElementById("inputB").value = "";
+      document.getElementById("inputC").value = "";
+      document.getElementById("inputD").value = "";
+      document.getElementById("inputE").value = "";
+      document.getElementById("inputSoru").value = "";
     } else if (sinavTuru === "final") {
-      Finaller.push({
-        ders: dersAdi,
-        soru: soru,
-        cevapA: cevapA,
-        cevapB: cevapB,
-        cevapC: cevapC,
-        cevapD: cevapD,
-        cevapE: cevapE,
-        cevap: cevap,
-      });
+      settempFinal((oldarray) => [
+        ...oldarray,
+        {
+          ders: dersAdi,
+          soru: soru,
+          cevapA: cevapA,
+          cevapB: cevapB,
+          cevapC: cevapC,
+          cevapD: cevapD,
+          cevapE: cevapE,
+          cevap: cevap,
+        },
+      ]);
+      document.getElementById("inputA").value = "";
+      document.getElementById("inputB").value = "";
+      document.getElementById("inputC").value = "";
+      document.getElementById("inputD").value = "";
+      document.getElementById("inputE").value = "";
+      document.getElementById("inputSoru").value = "";
     } else {
-      alert("Tüm alanları Doldurunuz");
+      alert("Sınav Türünü Seçiniz");
     }
   }
 
   function exit() {
     setSayfaState("AnaSayfa");
+  }
+  function sinaviTamamla() {
+    console.log(tempFinal, tempVize);
+    if (tempVize[0] === undefined && tempFinal[0] === undefined) {
+      alert("Sınav Oluşturulamadı.");
+    } else {
+      if (sinavTuru === "vize") {
+        Vizeler.push(...tempVize);
+        alert("Sınav oluşturuldu");
+        settempVize([]);
+      } else if (sinavTuru === "final") {
+        Finaller.push(...tempFinal);
+        alert("Sınav oluşturuldu");
+        settempFinal([]);
+      }
+    }
   }
 
   return (
@@ -131,15 +168,15 @@ export default function SinavOlustur() {
       </div>
       <div>
         <label className="cevap">Soruyu Giriniz</label>
-        <input onChange={(e) => setSoru(e.target.value)}></input>
+        <input id="inputSoru" onChange={(e) => setSoru(e.target.value)}></input>
       </div>
       <div className="cevaplar">
         <label>Cevapları Giriniz</label>
-        <input onChange={(e) => setCevapA(e.target.value)}></input>
-        <input onChange={(e) => setCevapB(e.target.value)}></input>
-        <input onChange={(e) => setCevapC(e.target.value)}></input>
-        <input onChange={(e) => setCevapD(e.target.value)}></input>
-        <input onChange={(e) => setCevapE(e.target.value)}></input>
+        <input id="inputA" onChange={(e) => setCevapA(e.target.value)}></input>
+        <input id="inputB" onChange={(e) => setCevapB(e.target.value)}></input>
+        <input id="inputC" onChange={(e) => setCevapC(e.target.value)}></input>
+        <input id="inputD" onChange={(e) => setCevapD(e.target.value)}></input>
+        <input id="inputE" onChange={(e) => setCevapE(e.target.value)}></input>
       </div>
       <div className="cevap">
         <label>Cevabı Seçiniz</label>
@@ -152,11 +189,12 @@ export default function SinavOlustur() {
         />
       </div>
       <div>
-        <button onClick={a}>Soruyu Ekle</button>
-        <button onClick={soruyuEkle}>Sınavı Tamanla</button>
+        <button onClick={soruyuEkle}>Soruyu Ekle</button>
+        <button onClick={sinaviTamamla}>Sınavı Tamanla</button>
+        <button onClick={a}></button>
         <button onClick={exit}>Çıkış Yap</button>
       </div>
-      {dizib}
+      {questionArray}
     </div>
   );
 }

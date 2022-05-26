@@ -8,7 +8,7 @@ export default function SonucEkrani(){
 
     return(
         <div>
-            <h1>{sonuc}/{Vizeler.length}</h1>
+            
 
         </div>
         

@@ -19,6 +19,7 @@ function App() {
   const [tumCevaplar, setTumCevaplar] = useState([]);
   const [studentName, setStudentName] = useState("");
   const [studentSurname, setStudentSurname] = useState("");
+  const [results,setResults]=useState([])
 
   return (
     <div className="App">
@@ -42,6 +43,8 @@ function App() {
           setStudentName,
           studentSurname,
           setStudentSurname,
+          results,
+          setResults
         }}
       >
         {sayfaState === "AnaSayfa" && <AnaSayfa />}
