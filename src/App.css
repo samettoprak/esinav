@@ -5,6 +5,8 @@
   align-items: center;
   flex-direction: column;
   padding: 30px;
+
+  
 }
 label{
   padding-top: 10px;
@@ -24,6 +26,9 @@ input{
   justify-content: center;
   align-items: center;
   color: aliceblue;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+  0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  
 }
 .Menu button {
   width: 300px;

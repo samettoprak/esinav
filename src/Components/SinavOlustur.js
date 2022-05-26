@@ -8,6 +8,7 @@ import Select from "react-select";
 import AllQuestions from "./AllQuestions";
 import { Dersler } from "../Helpers/Dersler";
 
+
 export default function SinavOlustur() {
   const { setSayfaState } = useContext(QuizContext);
   const [dersAdi, setDersAdi] = useState("");
@@ -101,7 +102,7 @@ export default function SinavOlustur() {
     }
   }
 
-  function ebe() {
+  function exit() {
     setSayfaState("AnaSayfa");
   }
 
@@ -153,7 +154,7 @@ export default function SinavOlustur() {
       <div>
         <button onClick={a}>Soruyu Ekle</button>
         <button onClick={soruyuEkle}>Sınavı Tamanla</button>
-        <button onClick={ebe}>Çıkış Yap</button>
+        <button onClick={exit}>Çıkış Yap</button>
       </div>
       {dizib}
     </div>

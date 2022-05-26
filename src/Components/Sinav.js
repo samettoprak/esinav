@@ -3,12 +3,26 @@ import { Vizeler } from "../Helpers/Vizeler";
 import { QuizContext } from "../Helpers/Context";
 import { Finaller } from "../Helpers/Finaller";
 import "../Tasarim/sinav.css";
+import { Ogrenciler } from "../Helpers/Ogrenciler";
 export default function Sinav() {
   const [currentSoru, setCurrentSoru] = useState(0);
   const [secilenCevap, setSecilenCevap] = useState("");
-  const { sonuc, setSonuc, setSayfaState, chosenDers, chosenTur } =
-    useContext(QuizContext);
+  const [cevaplar, setCevaplar] = useState([]);
+  const [temp, setTemp] = useState(0);
 
+  const {
+    setSayfaState,
+    chosenDers,
+    chosenTur,
+    eposta,
+    tumCevaplar,
+    setTumCevaplar,
+    setStudentName,
+    setStudentSurname,
+    studentName,
+  } = useContext(QuizContext);
+  
+  
   let istenilenSinav = [];
 
   if (chosenTur === "Vize") {
@@ -26,22 +40,84 @@ export default function Sinav() {
   }
 
   const nextQuestion = () => {
-    if (istenilenSinav[currentSoru].cevap === secilenCevap) {
-      setSonuc(sonuc + 1);
+    if (temp === 0) {
+      setCevaplar((oldarray) => [
+        ...oldarray,
+        {
+          adi: studentName,
+          ders: chosenDers,
+          sinavTuru: chosenTur,
+          soru: currentSoru + 1,
+          ogrenciCevabı: secilenCevap,
+          dogruCevap: istenilenSinav[currentSoru].cevap,
+        },
+      ]);
+      setTemp(1);
+    } else if (cevaplar[currentSoru] === undefined) {
+      console.log(cevaplar[currentSoru]);
+
+      console.log("buraya girdim");
+
+      console.log(currentSoru + 1);
+      // trueye alıp bıraktım
+      setCevaplar((oldarray) => [
+        ...oldarray,
+        {
+          adi: studentName,
+          ders: chosenDers,
+          sinavTuru: chosenTur,
+          soru: currentSoru + 1,
+          ogrenciCevabı: secilenCevap,
+          dogruCevap: istenilenSinav[currentSoru].cevap,
+        },
+      ]);
     }
     setCurrentSoru(currentSoru + 1);
+    // if (istenilenSinav[currentSoru+1].cevap === secilenCevap) {
+    //  setSonuc(sonuc + 1);
+    //}
+    let a = 0;
+    cevaplar.forEach((cevap) => {
+      if (cevap.soru === currentSoru + 1) {
+        cevaplar[a].adi = studentName;
+        cevaplar[a].ders = chosenDers;
+        cevaplar[a].sinavTuru = chosenTur;
+        cevaplar[a].soru = currentSoru + 1;
+        cevaplar[a].ogrenciCevabı = secilenCevap;
+        cevaplar[a].dogruCevap = istenilenSinav[currentSoru].cevap;
+
+        console.log("samet", currentSoru + 1);
+      }
+      a = a + 1;
+    });
   };
   const prevQuestion = () => {
-    
     setCurrentSoru(currentSoru - 1);
+    console.log(currentSoru);
   };
 
   const sonSoru = () => {
-    if (Vizeler[currentSoru].cevap === secilenCevap) {
-      setSonuc(sonuc + 1);
-    }
-    setSayfaState("SonucEkrani");
+    setCevaplar((oldarray) => [
+      ...oldarray,
+      {
+        adi: studentName,
+        ders: chosenDers,
+        sinavTuru: chosenTur,
+        soru: currentSoru + 1,
+        ogrenciCevabı: secilenCevap,
+        dogruCevap: istenilenSinav[currentSoru].cevap,
+      },
+    ]);
+
+    // setSayfaState("SonucEkrani");
   };
+
+  function abialoo() {
+    console.log(cevaplar);
+    console.log(cevaplar[currentSoru + 1]);
+    console.log(currentSoru);
+    console.log(tumCevaplar);
+  }
 
   return (
     <div className="sinav">
@@ -74,6 +150,7 @@ export default function Sinav() {
       {currentSoru === istenilenSinav.length - 1 && (
         <button onClick={sonSoru}>Sınavı Bitir</button>
       )}
+      <button onClick={abialoo}></button>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 export const Vizeler = [
   {
-    ders:"matematik",
-    soru: "ankara nerde",
+    ders: "matematik",
+    soru: "1.soruankara nerde",
     cevapA: "marmara",
     cevapB: "iç anadolu",
     cevapC: "güney",
@@ -11,16 +11,33 @@ export const Vizeler = [
     //en kötü tüm soruları iç içe koyarak kullanırım altına ders adı ve türü eklerim
   },
   {
-    ders:"matematik",
-    soru: "1+1",
+    ders: "matematik",
+    soru: "2.soru1+1",
     cevapA: "13",
     cevapB: "2",
     cevapC: "1",
     cevapD: "4",
     cevapE: "kars",
     cevap: "B",
-
-
-    
+  },
+  {
+    ders: "matematik",
+    soru: "3.soru2+2",
+    cevapA: "13",
+    cevapB: "2",
+    cevapC: "1",
+    cevapD: "4",
+    cevapE: "kars",
+    cevap: "D",
+  },
+  {
+    ders: "matematik",
+    soru: "kars",
+    cevapA: "13",
+    cevapB: "2",
+    cevapC: "1",
+    cevapD: "4",
+    cevapE: "kars",
+    cevap: "E",
   },
 ];

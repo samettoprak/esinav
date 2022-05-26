@@ -13,11 +13,11 @@ export default function AnaSayfa() {
     Ogrenciler.forEach((ogrenci) => {
       if (ogrenci.eposta === eposta && ogrenci.sifre === sifre) {
         if (ogrenci.sifre === "admin") {
-          setSayfaState("SinavOlustur");
-          console.log("qswdasda");
+          setSayfaState("AdminAnaSayfa");
+
         } else {
-          console.log(eposta);
-          setSayfaState("Sinavlarim");
+
+          setSayfaState("Profil");
         }
       }
       
@@ -28,7 +28,7 @@ export default function AnaSayfa() {
   return (
     <div className="Menu">
       <img className="Logo" src={require("../Helpers/tulogo.png")}></img>
-      <label>Trakya Üniversitesi Sınav Uygulaması</label>
+      <strong>Trakya Üniversitesi Sınav Uygulaması</strong>
       <label>e-posta giriniz</label>
       <input onChange={(e) => setEposta(e.target.value)}></input>
       <label>Şifre giriniz</label>

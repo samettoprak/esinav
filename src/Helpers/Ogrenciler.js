@@ -2,9 +2,9 @@ export const Ogrenciler = [
   {
     ad: "Samet",
     soyad: "Toprak",
-    eposta: "samettoprak@trakya.edu.tr",
-    sifre: "samettoprak123",
-    dersler:["matematik","türkçe"]
+    eposta: "samet",
+    sifre: "samet",
+    dersler:["matematik","fizik"]
   },
   {
     ad: "Burhan",

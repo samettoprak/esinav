@@ -1,6 +1,6 @@
 import { Ogrenciler } from "../Helpers/Ogrenciler";
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { QuizContext } from "../Helpers/Context";
 import "../Tasarim/sinavlarim.css";
 
@@ -13,6 +13,7 @@ export default function Sinavlarim() {
     chosenTur,
     chosenDers,
   } = useContext(QuizContext);
+  const[renk,setRenk]=useState("")
 
   let takenLessons = [];
   Ogrenciler.forEach((ogrenci) => {
@@ -32,9 +33,12 @@ export default function Sinavlarim() {
   // console.log(Vizeler[0])
   //  Vizeler.forEach((element) => {});
   //}
+  
   function vizeyeGit() {
     //setSayfaState("Sınav");
     setChosenTur("Vize");
+    setRenk("amk")
+    
   }
 
   function finaleGit() {
@@ -48,8 +52,8 @@ export default function Sinavlarim() {
   return (
     <div className="sayfa">
       <div className="tur">
-        <button onClick={vizeyeGit}>Vize</button>
-        <button onClick={finaleGit}>Final</button>
+        <button className={chosenTur==="Vize"? "amk": ""} onClick={vizeyeGit}>Vize</button>
+        <button className={chosenTur==="Final"? "amk": ""} onClick={finaleGit}>Final</button>
       </div>
       <div className="sinavlarim">{takenLessons}</div>
       <button className="basla" onClick={sinavaBasla}>Sınava Başla</button>
