@@ -8,6 +8,8 @@ import Sinavlarim from "./Components/Sinavlarim";
 import SinavOlustur from "./Components/SinavOlustur";
 import AdminAnaSayfa from "./Components/AdminAnaSayfa";
 import Profil from "./Components/Profil";
+import AfterQuiz from "./Components/AfterQuiz";
+import AdminResults from "./Components/AdminResults";
 
 function App() {
   const [sayfaState, setSayfaState] = useState("AnaSayfa");
@@ -19,7 +21,8 @@ function App() {
   const [tumCevaplar, setTumCevaplar] = useState([]);
   const [studentName, setStudentName] = useState("");
   const [studentSurname, setStudentSurname] = useState("");
-  const [results,setResults]=useState([])
+  const [results, setResults] = useState([]);
+  const [data, setData] = useState([]);
 
   return (
     <div className="App">
@@ -44,7 +47,9 @@ function App() {
           studentSurname,
           setStudentSurname,
           results,
-          setResults
+          setResults,
+          data,
+          setData,
         }}
       >
         {sayfaState === "AnaSayfa" && <AnaSayfa />}
@@ -54,6 +59,8 @@ function App() {
         {sayfaState === "SinavOlustur" && <SinavOlustur />}
         {sayfaState === "AdminAnaSayfa" && <AdminAnaSayfa />}
         {sayfaState === "Profil" && <Profil />}
+        {sayfaState==="AfterQuiz" && <AfterQuiz/>}
+        {sayfaState==="AdminResults" && <AdminResults/>}
       </QuizContext.Provider>
     </div>
   );

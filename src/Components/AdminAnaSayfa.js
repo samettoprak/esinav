@@ -6,13 +6,16 @@ export default  function AdminAnaSayfa(){
     function sinavOlustur(){
         setSayfaState("SinavOlustur")
     }
+    function tempfunc(){
+        setSayfaState("AdminResults")
+    }
 
 
 
     return(
         <div>
             <button onClick={sinavOlustur}>Sınav Oluştur</button>
-            <button >Sonuçları Görüntüle</button>
+            <button onClick={tempfunc}>Sonuçları Görüntüle</button>
             <button >Sınavları Görüntüle</button>
 
         </div>

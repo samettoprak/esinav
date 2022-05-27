@@ -1,14 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useLayoutEffect } from "react";
 import { Vizeler } from "../Helpers/Vizeler";
 import { QuizContext } from "../Helpers/Context";
 import { Finaller } from "../Helpers/Finaller";
 import "../Tasarim/sinav.css";
 import { Ogrenciler } from "../Helpers/Ogrenciler";
+import AnaSayfa from "./AnaSayfa";
 export default function Sinav() {
   const [currentSoru, setCurrentSoru] = useState(0);
   const [secilenCevap, setSecilenCevap] = useState("");
   const [cevaplar, setCevaplar] = useState([]);
   const [temp, setTemp] = useState(0);
+  const [boolean, setBoolean] = useState(true);
 
   const {
     setSayfaState,
@@ -20,11 +22,13 @@ export default function Sinav() {
     setStudentName,
     setStudentSurname,
     studentName,
+    studentSurname,
     results,
-    setResults
+    setResults,
+    data,
+    setData,
   } = useContext(QuizContext);
-  
-  
+
   let istenilenSinav = [];
 
   if (chosenTur === "Vize") {
@@ -98,6 +102,40 @@ export default function Sinav() {
     console.log(currentSoru);
   };
 
+  useEffect(() => {
+    setTumCevaplar((oldarray2) => [...oldarray2, ...cevaplar]);
+  }, [boolean]);
+
+  useEffect(() => {
+    if (cevaplar[0] !== undefined) {
+      let a = 0;
+      let b = cevaplar.length;
+      console.log("useeffecy", b, a);
+      cevaplar.forEach((obje) => {
+        console.log(obje.ogrenciCevabı, obje.dogruCevap);
+
+        if (obje.ogrenciCevabı === obje.dogruCevap) {
+          a = a + 1;
+        }
+      });
+      console.log(a);
+      b = (a / b) * 100;
+      setData((oldData) => [
+        ...oldData,
+        {
+          adi: studentName,
+          soyadi: studentSurname,
+          ders: chosenDers,
+          sinavTuru: chosenTur,
+          puan: b,
+        },
+      ]);
+      console.log(b);
+      //setSayfaState("AfterQuiz")
+    }
+    
+  }, [boolean]);
+
   const sonSoru = () => {
     setCevaplar((oldarray) => [
       ...oldarray,
@@ -110,8 +148,9 @@ export default function Sinav() {
         dogruCevap: istenilenSinav[currentSoru].cevap,
       },
     ]);
+    setBoolean(!boolean);
 
-    // setSayfaState("SonucEkrani");
+    //setSayfaState("AfterQuiz")
   };
 
   function abialoo() {
@@ -119,6 +158,14 @@ export default function Sinav() {
     console.log(cevaplar[currentSoru + 1]);
     console.log(currentSoru);
     console.log(tumCevaplar);
+    //setSayfaState("AnaSayfa");
+    
+    console.log("data",data);
+    console.log(cevaplar.length);
+    setSayfaState("AfterQuiz");
+  }
+  function exit () {
+    setSayfaState("AnaSayfa")
   }
 
   return (
@@ -152,7 +199,7 @@ export default function Sinav() {
       {currentSoru === istenilenSinav.length - 1 && (
         <button onClick={sonSoru}>Sınavı Bitir</button>
       )}
-      <button onClick={abialoo}></button>
+      <button onClick={abialoo}>ab alo</button> <button onClick={exit}>Ana Sayfaya Git</button>
     </div>
   );
 }
