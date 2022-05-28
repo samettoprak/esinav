@@ -23,6 +23,9 @@ function App() {
   const [studentSurname, setStudentSurname] = useState("");
   const [results, setResults] = useState([]);
   const [data, setData] = useState([]);
+  const [tempAllQuestionsArray,setTempAllQuestionsArray]=useState([])
+  const [soruData, setSoruData] = useState([]);
+  
 
   return (
     <div className="App">
@@ -50,6 +53,8 @@ function App() {
           setResults,
           data,
           setData,
+          tempAllQuestionsArray,setTempAllQuestionsArray,
+          soruData, setSoruData
         }}
       >
         {sayfaState === "AnaSayfa" && <AnaSayfa />}

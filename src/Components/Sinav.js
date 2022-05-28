@@ -51,6 +51,7 @@ export default function Sinav() {
         ...oldarray,
         {
           adi: studentName,
+          soyadi:studentSurname,
           ders: chosenDers,
           sinavTuru: chosenTur,
           soru: currentSoru + 1,
@@ -70,6 +71,7 @@ export default function Sinav() {
         ...oldarray,
         {
           adi: studentName,
+          soyadi:studentSurname,
           ders: chosenDers,
           sinavTuru: chosenTur,
           soru: currentSoru + 1,
@@ -141,6 +143,7 @@ export default function Sinav() {
       ...oldarray,
       {
         adi: studentName,
+        soyadi:studentSurname,
         ders: chosenDers,
         sinavTuru: chosenTur,
         soru: currentSoru + 1,

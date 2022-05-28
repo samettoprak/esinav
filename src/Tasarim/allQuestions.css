@@ -1,17 +1,29 @@
-.all{
-    padding: 10px;
+.allX{
+    padding-top: 20px;
+    
 
-    margin-top: 10px;
+    
 }
 
-.allQ{
-
-    padding: 5px;
-    border-radius: 10px;
-}
 .allAnswers{
     display: flex;
     flex-direction: column;
+    
+    
    
 
+}
+.allAnswers label{
+   padding-left: 5px;
+   padding-bottom: 5px;
+}
+.correct{
+    background-color: green;
+    border-radius: 5px;
+  
+
+}
+.wrong{
+    background-color: rgb(189, 13, 13);
+    border-radius: 5px;
 }

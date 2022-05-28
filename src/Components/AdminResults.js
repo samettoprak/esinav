@@ -6,7 +6,7 @@ import AdminResultsComp from "./AdminResultsComp";
 import "../Tasarim/adminResults.css";
 
 export default function AdminResults() {
-  const { data, setSayfaState } = useContext(QuizContext);
+  const { data, setSayfaState,soruData } = useContext(QuizContext);
 
   let temp = [];
   let tempCompArray = [];
@@ -14,11 +14,11 @@ export default function AdminResults() {
 
   let tempArray = [];
   Ogrenciler.forEach((ogrObject) => {
-    Dersler.forEach((dersObject) => {
+    ogrObject.dersler.forEach((dersObject) => {
       tempArray.push({
         ad: ogrObject.ad,
         soyad: ogrObject.soyad,
-        ders: dersObject.value,
+        ders: dersObject,
         vizeNot: "Sınava Girilmedi",
         finalNot: "Sınava Girilmedi",
       });
@@ -47,8 +47,10 @@ export default function AdminResults() {
   }
   tempCompArray = tempArray.map((e) => (
     <AdminResultsComp
+     
       ders={e.ders}
-      isim={e.ad + " " + e.soyad}
+      ad={e.ad}
+      soyad={e.soyad}
       vizeNot={e.vizeNot}
       finalNot={e.finalNot}
     />
@@ -67,8 +69,8 @@ export default function AdminResults() {
         </thead>
         <tbody>{tempCompArray}</tbody>
       </table>
-
       <button onClick={tempfunc}>click me </button>
+      {soruData}
     </div>
   );
 }
