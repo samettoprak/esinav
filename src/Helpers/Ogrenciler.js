@@ -11,7 +11,7 @@ export const Ogrenciler = [
     soyad: "Köse",
     eposta: "burhanköse@trakya.edu.tr",
     sifre: "burhanköse123",
-    dersler:["outocat","fizik"]
+    dersler:["outocat","fizik","enerji"]
   },{
     ad: "admin",
     soyad: "admin",

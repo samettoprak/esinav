@@ -10,6 +10,7 @@ import AdminAnaSayfa from "./Components/AdminAnaSayfa";
 import Profil from "./Components/Profil";
 import AfterQuiz from "./Components/AfterQuiz";
 import AdminResults from "./Components/AdminResults";
+import NavBar from "./Components/NavBar"
 
 function App() {
   const [sayfaState, setSayfaState] = useState("AnaSayfa");
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <div className="App">
+      
       <QuizContext.Provider
         value={{
           sayfaState,
@@ -57,6 +59,7 @@ function App() {
           soruData, setSoruData
         }}
       >
+        {sayfaState==="AnaSayfa"?null: <NavBar></NavBar>}
         {sayfaState === "AnaSayfa" && <AnaSayfa />}
         {sayfaState === "Sinav" && <Sinav />}
         {sayfaState === "SonucEkrani" && <SonucEkrani />}

@@ -14,25 +14,21 @@ export default function AnaSayfa() {
       if (ogrenci.eposta === eposta && ogrenci.sifre === sifre) {
         if (ogrenci.sifre === "admin") {
           setSayfaState("AdminAnaSayfa");
-
         } else {
-
           setSayfaState("Profil");
         }
       }
-      
     });
-    
   }
 
   return (
     <div className="Menu">
       <img className="Logo" src={require("../Helpers/tulogo.png")}></img>
-      <strong>Trakya Üniversitesi Sınav Uygulaması</strong>
-      <label>e-posta giriniz</label>
-      <input onChange={(e) => setEposta(e.target.value)}></input>
-      <label>Şifre giriniz</label>
-      <input onChange={(e) => setSifre(e.target.value)} type="password"></input>
+      <label>Trakya Üniversitesi Sınav Uygulaması</label>
+      <div className="menudiv">
+      <input placeholder="e-posta"onChange={(e) => setEposta(e.target.value)}></input>
+      <input placeholder="şifre" onChange={(e) => setSifre(e.target.value)} type="password"></input>
+      </div>
       <button onClick={kontrol}>Giriş Yap</button>
     </div>
   );

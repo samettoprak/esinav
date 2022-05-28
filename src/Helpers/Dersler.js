@@ -10,10 +10,15 @@ export const Dersler = [
     {
       value: "java",
       label: "Java",
-    },,
+    },
     {
       value: "outocat",
       label: "Outocat",
     },
+    {
+      value: "enerji",
+      label: "Enerji Üretim Sistemleri",
+    },
+
 
   ];
