@@ -40,11 +40,7 @@ export default function AdminResults() {
       }
     });
   });
-  function tempfunc() {
-    console.log(tempArray);
-    console.log(data);
-    setSayfaState("AnaSayfa");
-  }
+
   tempCompArray = tempArray.map((e) => (
     <AdminResultsComp
      
@@ -69,7 +65,6 @@ export default function AdminResults() {
         </thead>
         <tbody>{tempCompArray}</tbody>
       </table>
-      <button onClick={tempfunc}>click me </button>
       {soruData}
     </div>
   );

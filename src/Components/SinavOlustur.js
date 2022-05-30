@@ -23,14 +23,6 @@ export default function SinavOlustur() {
   const [questionArray, setquestionArray] = useState([]); // sorular
   const [tempFinal, settempFinal] = useState([]); //finaller
 
-  function a() {
-    //kontrol
-    console.log(Vizeler);
-    console.log(Finaller);
-    console.log(tempVize);
-    console.log(tempFinal);
-    console.log(questionArray);
-  }
   const turler = [
     { value: "vize", label: "Vize" },
     { value: "final", label: "Final" },
@@ -78,54 +70,69 @@ export default function SinavOlustur() {
   }, [tempFinal]);
 
   function soruyuEkle() {
-    if (sinavTuru === "vize") {
-      settempVize((oldarray) => [
-        ...oldarray,
-        {
-          ders: dersAdi,
-          soru: soru,
-          cevapA: cevapA,
-          cevapB: cevapB,
-          cevapC: cevapC,
-          cevapD: cevapD,
-          cevapE: cevapE,
-          cevap: cevap,
-        },
-      ]);
-      document.getElementById("inputA").value = "";
-      document.getElementById("inputB").value = "";
-      document.getElementById("inputC").value = "";
-      document.getElementById("inputD").value = "";
-      document.getElementById("inputE").value = "";
-      document.getElementById("inputSoru").value = "";
-    } else if (sinavTuru === "final") {
-      settempFinal((oldarray) => [
-        ...oldarray,
-        {
-          ders: dersAdi,
-          soru: soru,
-          cevapA: cevapA,
-          cevapB: cevapB,
-          cevapC: cevapC,
-          cevapD: cevapD,
-          cevapE: cevapE,
-          cevap: cevap,
-        },
-      ]);
-      document.getElementById("inputA").value = "";
-      document.getElementById("inputB").value = "";
-      document.getElementById("inputC").value = "";
-      document.getElementById("inputD").value = "";
-      document.getElementById("inputE").value = "";
-      document.getElementById("inputSoru").value = "";
+    if (
+      dersAdi ==="" ||
+      cevapA === "" ||
+      cevapB === "" ||
+      cevapC === "" ||
+      cevapE === "" ||
+      cevapD === "" ||
+      cevap === ""
+    ) {
+      alert("Lütfen Tüm Alanları doldurunuz");
     } else {
-      alert("Sınav Türünü Seçiniz");
+      if (sinavTuru === "vize") {
+        settempVize((oldarray) => [
+          ...oldarray,
+          {
+            ders: dersAdi,
+            soru: soru,
+            cevapA: cevapA,
+            cevapB: cevapB,
+            cevapC: cevapC,
+            cevapD: cevapD,
+            cevapE: cevapE,
+            cevap: cevap,
+          },
+        ]);
+        document.getElementById("inputA").value = "";
+        document.getElementById("inputB").value = "";
+        document.getElementById("inputC").value = "";
+        document.getElementById("inputD").value = "";
+        document.getElementById("inputE").value = "";
+        document.getElementById("inputSoru").value = "";
+        setCevap("");
+        setCevapA("");
+        setCevapB("");
+        setCevapC("");
+        setCevapD("");
+        setCevapE("");
+      } else if (sinavTuru === "final") {
+        settempFinal((oldarray) => [
+          ...oldarray,
+          {
+            ders: dersAdi,
+            soru: soru,
+            cevapA: cevapA,
+            cevapB: cevapB,
+            cevapC: cevapC,
+            cevapD: cevapD,
+            cevapE: cevapE,
+            cevap: cevap,
+          },
+        ]);
+        document.getElementById("inputA").value = "";
+        document.getElementById("inputB").value = "";
+        document.getElementById("inputC").value = "";
+        document.getElementById("inputD").value = "";
+        document.getElementById("inputE").value = "";
+        document.getElementById("inputSoru").value = "";
+      } else {
+        alert("Sınav Türünü Seçiniz");
+      }
     }
   }
 
-  function exit() {
-    setSayfaState("AnaSayfa");
-  }
   function sinaviTamamla() {
     console.log(tempFinal, tempVize);
     if (tempVize[0] === undefined && tempFinal[0] === undefined) {
@@ -166,17 +173,41 @@ export default function SinavOlustur() {
           ></Select>
         </div>
       </div>
-      <div>
-        <label className="cevap">Soruyu Giriniz</label>
-        <input id="inputSoru" onChange={(e) => setSoru(e.target.value)}></input>
+      <div className="cevaplar">
+        <label>Soru</label>
+        <input
+          placeholder="Soruyu Giriniz"
+          id="inputSoru"
+          onChange={(e) => setSoru(e.target.value)}
+        ></input>
       </div>
       <div className="cevaplar">
-        <label>Cevapları Giriniz</label>
-        <input id="inputA" onChange={(e) => setCevapA(e.target.value)}></input>
-        <input id="inputB" onChange={(e) => setCevapB(e.target.value)}></input>
-        <input id="inputC" onChange={(e) => setCevapC(e.target.value)}></input>
-        <input id="inputD" onChange={(e) => setCevapD(e.target.value)}></input>
-        <input id="inputE" onChange={(e) => setCevapE(e.target.value)}></input>
+        <label>Cevaplar</label>
+        <input
+          id="inputA"
+          placeholder="A"
+          onChange={(e) => setCevapA(e.target.value)}
+        ></input>
+        <input
+          id="inputB"
+          placeholder="B"
+          onChange={(e) => setCevapB(e.target.value)}
+        ></input>
+        <input
+          id="inputC"
+          placeholder="C"
+          onChange={(e) => setCevapC(e.target.value)}
+        ></input>
+        <input
+          id="inputD"
+          placeholder="D"
+          onChange={(e) => setCevapD(e.target.value)}
+        ></input>
+        <input
+          id="inputE"
+          placeholder="E"
+          onChange={(e) => setCevapE(e.target.value)}
+        ></input>
       </div>
       <div className="cevap">
         <label>Cevabı Seçiniz</label>
@@ -191,8 +222,6 @@ export default function SinavOlustur() {
       <div>
         <button onClick={soruyuEkle}>Soruyu Ekle</button>
         <button onClick={sinaviTamamla}>Sınavı Tamanla</button>
-        <button onClick={a}></button>
-        <button onClick={exit}>Çıkış Yap</button>
       </div>
       {questionArray}
     </div>

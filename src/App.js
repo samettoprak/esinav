@@ -11,6 +11,7 @@ import Profil from "./Components/Profil";
 import AfterQuiz from "./Components/AfterQuiz";
 import AdminResults from "./Components/AdminResults";
 import NavBar from "./Components/NavBar"
+import AdminNavBar from "./Components/AdminNavBar"
 
 function App() {
   const [sayfaState, setSayfaState] = useState("AnaSayfa");
@@ -59,7 +60,8 @@ function App() {
           soruData, setSoruData
         }}
       >
-        {sayfaState==="AnaSayfa"?null: <NavBar></NavBar>}
+        {(sayfaState==="AnaSayfa" || eposta==="admin")?null: <NavBar></NavBar>}
+        {(eposta==="admin" && sayfaState!=="AnaSayfa")?<AdminNavBar></AdminNavBar>:null}
         {sayfaState === "AnaSayfa" && <AnaSayfa />}
         {sayfaState === "Sinav" && <Sinav />}
         {sayfaState === "SonucEkrani" && <SonucEkrani />}

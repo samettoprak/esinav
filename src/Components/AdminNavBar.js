@@ -3,14 +3,14 @@ import { QuizContext } from "../Helpers/Context";
 import "../Tasarim/navBar.css";
 
 const NavBar = () => {
-  const { setSayfaState } = useContext(QuizContext);
+  const { setSayfaState , eposta,setEposta } = useContext(QuizContext);
 
   const sinavlarPage=()=>{
-    setSayfaState("Sinavlarim")
+    setSayfaState("SinavOlustur")
 
 }
 const resultPage = ()=>{
-    setSayfaState("Results")
+    setSayfaState("AdminResults")
 }
 
 const profil = ()=>{
@@ -18,6 +18,7 @@ const profil = ()=>{
 }
 
 const exit = ()=>{
+    setEposta("")
     setSayfaState("AnaSayfa")
 }
 
@@ -25,8 +26,8 @@ const exit = ()=>{
   return (
     <div className="navBar">
       <div className="navBar2">
-        <button onClick={sinavlarPage}>Sınavlar</button>
-        <button onClick={resultPage}>Notlarım</button>
+        <button onClick={sinavlarPage}>Sınav Oluştur</button>
+        <button onClick={resultPage}>Sonuçlar</button>
         <button onClick={profil}>Profil</button>
         <button onClick={exit}>Çıkış Yap</button>
       </div>

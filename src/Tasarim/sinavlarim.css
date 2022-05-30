@@ -24,21 +24,23 @@
   margin: 5px;
   border: none;
   border-radius: 10px;
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
 }
 .sinavlarim button:focus {
-    background-color: cadetblue;
+    background-color: grey;
+    box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24),
+    0 17px 50px 0 rgba(255, 255, 255, 0.19);
 }
 
 .sayfa {
+  margin-top: 20px;
   width: 500px;
   height: 500px;
-  background-color: lightseagreen;
+  background-color: black;
   align-items: center;
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
 }
 .basla {
   margin: 10px;
@@ -49,6 +51,8 @@
   border-radius: 10px;
 
 }
-.amk{
-  background-color: cadetblue;
+.fokus{
+  background-color: grey;
+  box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.24),
+  0 17px 15px 0 rgba(255, 255, 255, 0.19);
 }

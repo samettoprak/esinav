@@ -15,7 +15,7 @@ export default  function AdminAnaSayfa(){
     return(
         <div>
             <button onClick={sinavOlustur}>Sınav Oluştur</button>
-            <button onClick={tempfunc}>Sonuçları Görüntüle</button>
+            <button onClick={tempfunc}>Sonuçlar</button>
             <button >Sınavları Görüntüle</button>
 
         </div>

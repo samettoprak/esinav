@@ -1,12 +1,10 @@
 .cevaplar{
+    margin-top: 5px;
     display: flex;
     flex-direction: column;
 
 }
-.cevap{
-    display: flex;
-    flex-direction: column;
-}
+
 
 .profil{
     display: flex;

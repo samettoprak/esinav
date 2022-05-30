@@ -12,11 +12,11 @@ export default function AnaSayfa() {
   function kontrol() {
     Ogrenciler.forEach((ogrenci) => {
       if (ogrenci.eposta === eposta && ogrenci.sifre === sifre) {
-        if (ogrenci.sifre === "admin") {
-          setSayfaState("AdminAnaSayfa");
-        } else {
+        
+          
+          
           setSayfaState("Profil");
-        }
+        
       }
     });
   }

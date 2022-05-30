@@ -191,18 +191,21 @@ export default function Sinav() {
           {istenilenSinav[currentSoru].cevapE}
         </button>
       </div>
+      <div className="a">
+      {currentSoru > 0 && <button className="aButton" onClick={prevQuestion}>Önceki Soru</button>}
+
       {currentSoru === 0 && (
-        <button onClick={nextQuestion}>Sıradaki Soru</button>
+        <button className="aButton" onClick={nextQuestion}>Sıradaki Soru</button>
       )}
       {currentSoru > 0 && currentSoru !== istenilenSinav.length - 1 && (
-        <button onClick={nextQuestion}>Sıradaki Soru</button>
+        <button className="aButton" onClick={nextQuestion}>Sıradaki Soru</button>
       )}
-      {currentSoru > 0 && <button onClick={prevQuestion}>önceki Soru</button>}
-
+     
       {currentSoru === istenilenSinav.length - 1 && (
-        <button onClick={sonSoru}>Sınavı Bitir</button>
+        <button className="aButton" onClick={sonSoru}>Sınavı Bitir</button>
       )}
-      <button onClick={abialoo}>ab alo</button> <button onClick={exit}>Ana Sayfaya Git</button>
+      </div>
+      
     </div>
   );
 }

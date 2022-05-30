@@ -52,8 +52,8 @@ export default function Sinavlarim() {
   return (
     <div className="sayfa">
       <div className="tur">
-        <button className={chosenTur==="Vize"? "amk": ""} onClick={vizeyeGit}>Vize</button>
-        <button className={chosenTur==="Final"? "amk": ""} onClick={finaleGit}>Final</button>
+        <button className={chosenTur==="Vize"? "fokus": ""} onClick={vizeyeGit}>Vize</button>
+        <button className={chosenTur==="Final"? "fokus": ""} onClick={finaleGit}>Final</button>
       </div>
       <div className="sinavlarim">{takenLessons}</div>
       <button className="basla" onClick={sinavaBasla}>Sınava Başla</button>
