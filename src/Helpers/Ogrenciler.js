@@ -24,5 +24,11 @@ export const Ogrenciler = [
     eposta: "ibrahim",
     sifre: "ibrahim",
     dersler:["outocat","matematik"]
+  },{
+    ad: "Uğur",
+    soyad: "Güven",
+    eposta: "ugur.com",
+    sifre: "ugur123",
+    dersler:["outocat","matematik"]
   }
 ];

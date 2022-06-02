@@ -12,6 +12,7 @@ import AfterQuiz from "./Components/AfterQuiz";
 import AdminResults from "./Components/AdminResults";
 import NavBar from "./Components/NavBar"
 import AdminNavBar from "./Components/AdminNavBar"
+import SinavOlusturFirst from "./Components/SinavOlusturFirst";
 
 function App() {
   const [sayfaState, setSayfaState] = useState("AnaSayfa");
@@ -27,13 +28,17 @@ function App() {
   const [data, setData] = useState([]);
   const [tempAllQuestionsArray,setTempAllQuestionsArray]=useState([])
   const [soruData, setSoruData] = useState([]);
+  const [dersAdi, setDersAdi] = useState("");
+  const [sinavTuru, setsinavTuru] = useState("");
   
 
   return (
     <div className="App">
       
+      
       <QuizContext.Provider
         value={{
+          sinavTuru, setsinavTuru,
           sayfaState,
           setSayfaState,
           sonuc,
@@ -57,7 +62,8 @@ function App() {
           data,
           setData,
           tempAllQuestionsArray,setTempAllQuestionsArray,
-          soruData, setSoruData
+          soruData, setSoruData,
+          dersAdi, setDersAdi
         }}
       >
         {(sayfaState==="AnaSayfa" || eposta==="admin")?null: <NavBar></NavBar>}
@@ -71,6 +77,8 @@ function App() {
         {sayfaState === "Profil" && <Profil />}
         {sayfaState==="AfterQuiz" && <AfterQuiz/>}
         {sayfaState==="AdminResults" && <AdminResults/>}
+        {sayfaState==="SinavOlusturFirst" && <SinavOlusturFirst/>}
+
       </QuizContext.Provider>
     </div>
   );

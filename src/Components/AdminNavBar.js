@@ -6,7 +6,7 @@ const NavBar = () => {
   const { setSayfaState , eposta,setEposta } = useContext(QuizContext);
 
   const sinavlarPage=()=>{
-    setSayfaState("SinavOlustur")
+    setSayfaState("SinavOlusturFirst")
 
 }
 const resultPage = ()=>{

@@ -8,10 +8,12 @@ import Select from "react-select";
 import AllQuestions from "./AllQuestions";
 import "../Tasarim/sinavOlustur.css";
 
+
+
 export default function SinavOlustur() {
-  const { setSayfaState } = useContext(QuizContext);
-  const [dersAdi, setDersAdi] = useState("");
-  const [sinavTuru, setsinavTuru] = useState("");
+  const { setSayfaState ,dersAdi, setDersAdi,sinavTuru, setsinavTuru} = useContext(QuizContext);
+  
+  
   const [soru, setSoru] = useState("");
   const [cevapA, setCevapA] = useState("");
   const [cevapB, setCevapB] = useState("");
@@ -22,11 +24,10 @@ export default function SinavOlustur() {
   const [tempVize, settempVize] = useState([]); //vizeler
   const [questionArray, setquestionArray] = useState([]); // sorular
   const [tempFinal, settempFinal] = useState([]); //finaller
+  let vizeBool = true;
+  let finalBool = true;
 
-  const turler = [
-    { value: "vize", label: "Vize" },
-    { value: "final", label: "Final" },
-  ];
+ 
   const cevaplar = [
     { value: "A", label: "A" },
     { value: "B", label: "B" },
@@ -71,7 +72,7 @@ export default function SinavOlustur() {
 
   function soruyuEkle() {
     if (
-      dersAdi ==="" ||
+      dersAdi === "" ||
       cevapA === "" ||
       cevapB === "" ||
       cevapC === "" ||
@@ -82,51 +83,74 @@ export default function SinavOlustur() {
       alert("Lütfen Tüm Alanları doldurunuz");
     } else {
       if (sinavTuru === "vize") {
-        settempVize((oldarray) => [
-          ...oldarray,
-          {
-            ders: dersAdi,
-            soru: soru,
-            cevapA: cevapA,
-            cevapB: cevapB,
-            cevapC: cevapC,
-            cevapD: cevapD,
-            cevapE: cevapE,
-            cevap: cevap,
-          },
-        ]);
-        document.getElementById("inputA").value = "";
-        document.getElementById("inputB").value = "";
-        document.getElementById("inputC").value = "";
-        document.getElementById("inputD").value = "";
-        document.getElementById("inputE").value = "";
-        document.getElementById("inputSoru").value = "";
-        setCevap("");
-        setCevapA("");
-        setCevapB("");
-        setCevapC("");
-        setCevapD("");
-        setCevapE("");
+        Vizeler.forEach((element) => {
+          if (element.ders === dersAdi) {
+            vizeBool = false;
+          }
+        });
+        if (!vizeBool) {
+          alert("Bu sınav zaten oluşturulmuş");
+        } else {
+          settempVize((oldarray) => [
+            ...oldarray,
+            {
+              ders: dersAdi,
+              soru: soru,
+              cevapA: cevapA,
+              cevapB: cevapB,
+              cevapC: cevapC,
+              cevapD: cevapD,
+              cevapE: cevapE,
+              cevap: cevap,
+            },
+          ]);
+          document.getElementById("inputA").value = "";
+          document.getElementById("inputB").value = "";
+          document.getElementById("inputC").value = "";
+          document.getElementById("inputD").value = "";
+          document.getElementById("inputE").value = "";
+          document.getElementById("inputSoru").value = "";
+
+          setCevapA("");
+          setCevapB("");
+          setCevapC("");
+          setCevapD("");
+          setCevapE("");
+        }
       } else if (sinavTuru === "final") {
-        settempFinal((oldarray) => [
-          ...oldarray,
-          {
-            ders: dersAdi,
-            soru: soru,
-            cevapA: cevapA,
-            cevapB: cevapB,
-            cevapC: cevapC,
-            cevapD: cevapD,
-            cevapE: cevapE,
-            cevap: cevap,
-          },
-        ]);
-        document.getElementById("inputA").value = "";
-        document.getElementById("inputB").value = "";
-        document.getElementById("inputC").value = "";
-        document.getElementById("inputD").value = "";
-        document.getElementById("inputE").value = "";
-        document.getElementById("inputSoru").value = "";
+        Finaller.forEach((element) => {
+          if (element.ders === dersAdi) {
+            finalBool = false;
+          }
+        });
+        if (!finalBool) {
+          alert("Bu sınav zaten oluşturulmuş");
+        } else {
+          settempFinal((oldarray) => [
+            ...oldarray,
+            {
+              ders: dersAdi,
+              soru: soru,
+              cevapA: cevapA,
+              cevapB: cevapB,
+              cevapC: cevapC,
+              cevapD: cevapD,
+              cevapE: cevapE,
+              cevap: cevap,
+            },
+          ]);
+          document.getElementById("inputA").value = "";
+          document.getElementById("inputB").value = "";
+          document.getElementById("inputC").value = "";
+          document.getElementById("inputD").value = "";
+          document.getElementById("inputE").value = "";
+          document.getElementById("inputSoru").value = "";
+          setCevapA("");
+          setCevapB("");
+          setCevapC("");
+          setCevapD("");
+          setCevapE("");
+        }
       } else {
         alert("Sınav Türünü Seçiniz");
       }
@@ -152,27 +176,9 @@ export default function SinavOlustur() {
 
   return (
     <div>
-      <div></div>
-      <div>
-        <label>Ders Giriniz</label>
-        <Select
-          options={Dersler}
-          onChange={(e) => {
-            setDersAdi(e.value);
-          }}
-        ></Select>
-      </div>
-      <div>
-        <label>Sınavın Türünü Seçiniz</label>
-        <div>
-          <Select
-            options={turler}
-            onChange={(e) => {
-              setsinavTuru(e.value);
-            }}
-          ></Select>
-        </div>
-      </div>
+   
+      
+      
       <div className="cevaplar">
         <label>Soru</label>
         <input
@@ -220,10 +226,14 @@ export default function SinavOlustur() {
         />
       </div>
       <div>
+        
         <button onClick={soruyuEkle}>Soruyu Ekle</button>
         <button onClick={sinaviTamamla}>Sınavı Tamanla</button>
+        
       </div>
       {questionArray}
+      
+
     </div>
   );
 }
