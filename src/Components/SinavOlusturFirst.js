@@ -2,46 +2,79 @@ import { useContext, useState } from "react";
 import { QuizContext } from "../Helpers/Context";
 import { Dersler } from "../Helpers/Dersler";
 import Select from "react-select";
-import { SinavSaatleri } from "../Helpers/SinavSaatleri";
+import { Vizeler } from "../Helpers/Vizeler";
+import { Finaller } from "../Helpers/Finaller";
+
 
 export default function SinavOlusturFirst() {
-  const { setSayfaState, sinavTuru, setsinavTuru, dersAdi, setDersAdi } = useContext(QuizContext);
-  
-  /*const now = new Date()
-  let date =now.toISOString()*/
+  const { setSayfaState, sinavTuru, setsinavTuru, dersAdi, setDersAdi, tempSinavSaat,setTempSinavSaat } =
+    useContext(QuizContext);
+
+  let vizeBool = true;
+  let finalBool = true;
 
   var date = new Date();
-var isoDateTime = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+  var isoDateTime = new Date(
+    date.getTime() - date.getTimezoneOffset() * 60000
+  ).toISOString();
+
   const turler = [
-    { value: "vize", label: "Vize" },
-    { value: "final", label: "Final" },
+    { value: "Vize", label: "Vize" },
+    { value: "Final", label: "Final" },
   ];
-  const [tarih1, setTarih1] = useState(null);
+
+  const [tarih1, setTarih1] = useState("");
   const tarih1Sec = (event) => {
     setTarih1(event.target.value);
   };
-  const [tarih2, setTarih2] = useState(null);
+  const [tarih2, setTarih2] = useState("");
   const tarih2Sec = (event) => {
     setTarih2(event.target.value);
   };
 
   function temp() {
-    console.log(tarih1,isoDateTime);
-    console.log(tarih1<isoDateTime)
+    console.log(tarih1, isoDateTime,tarih2,tempSinavSaat);
+    console.log(tarih1 < isoDateTime);
   }
-  function temp2 () {//hallet
-    if (sinavTuru === "vize") {
-        Vizeler.forEach((element) => {
-          if (element.ders === dersAdi) {
-            vizeBool = false;
-          }
-        });
-        if (!vizeBool) {
-          alert("Bu sınav zaten oluşturulmuş");
+  function Devam() {
+    if (sinavTuru === "Vize") {
+      Vizeler.forEach((element) => {
+        if (element.ders === dersAdi) {
+          vizeBool = false;
         }
-
-    setSayfaState("SinavOlustur")
-  }}
+      });
+      if (!vizeBool) {
+        vizeBool = true;
+        alert("Bu sınav zaten oluşturulmuş");
+      } else {
+        setTempSinavSaat({
+          ders:dersAdi,
+          sinavTuru:sinavTuru,
+          baslamaZamani:tarih1,
+          bitisZamani:tarih2
+        })
+        setSayfaState("SinavOlustur");
+      }
+    } else if (sinavTuru === "Final") {
+      Finaller.forEach((element) => {
+        if (element.ders === dersAdi) {
+          finalBool = false;
+        }
+      });
+      if (!finalBool) {
+        finalBool = true;
+        alert("Bu sınav zaten oluşturulmuş");
+      } else {
+        setTempSinavSaat({
+          ders:dersAdi,
+          sinavTuru:sinavTuru,
+          baslamaZamani:tarih1,
+          bitisZamani:tarih2
+        })
+        setSayfaState("SinavOlustur");
+      }
+    }
+  }
   return (
     <div>
       <div>
@@ -68,12 +101,14 @@ var isoDateTime = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).
         <label>Sınavın Başlangıç Zamanı </label>
         <input type="datetime-local" onChange={tarih1Sec}></input>
       </div>
-      <div>
+      <div className="sinavFirst">
         <label>Sınavın Bitiş Zamanı </label>
         <input type="datetime-local" onChange={tarih2Sec}></input>
       </div>
-      <button onClick={temp}>Devam</button>
-      <button onClick={temp2}>Sınav oluştura git</button>
+      <div className="sinavFirstButton">
+        <button onClick={temp}>temp</button>
+        <button onClick={Devam}>Sınav oluştura git</button>
+      </div>
     </div>
   );
 }

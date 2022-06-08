@@ -1,20 +1,24 @@
 import { useContext } from "react";
 import { QuizContext } from "../Helpers/Context";
-import { Dersler } from "../Helpers/Dersler";
+
 import { Ogrenciler } from "../Helpers/Ogrenciler";
 import AdminResultsComp from "./AdminResultsComp";
 import "../Tasarim/adminResults.css";
 
 export default function AdminResults() {
-  const { data, setSayfaState,soruData } = useContext(QuizContext);
+  const { data, soruData } = useContext(QuizContext);
 
   let temp = [];
   let tempCompArray = [];
   let tempData = [];
 
   let tempArray = [];
+
+  function float2int(value) {
+    return value | 0;
+  }
   Ogrenciler.forEach((ogrObject) => {
-    if(ogrObject.ad !=="Super"){
+    if (ogrObject.ad !== "Super") {
       ogrObject.dersler.forEach((dersObject) => {
         tempArray.push({
           ad: ogrObject.ad,
@@ -24,10 +28,7 @@ export default function AdminResults() {
           finalNot: "Sınava Girilmedi",
         });
       });
-
     }
-
-   
   });
 
   data.forEach((dataObject) => {
@@ -38,9 +39,9 @@ export default function AdminResults() {
         dataObject.ders === taObject.ders
       ) {
         if (dataObject.sinavTuru === "Vize") {
-          taObject.vizeNot = dataObject.puan;
+          taObject.vizeNot = float2int(dataObject.puan);
         } else {
-          taObject.finalNot = dataObject.puan;
+          taObject.finalNot = float2int(dataObject.puan);
         }
       }
     });
@@ -48,7 +49,6 @@ export default function AdminResults() {
 
   tempCompArray = tempArray.map((e) => (
     <AdminResultsComp
-     
       ders={e.ders}
       ad={e.ad}
       soyad={e.soyad}

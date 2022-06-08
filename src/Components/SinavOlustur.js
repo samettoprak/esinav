@@ -3,17 +3,15 @@ import { Vizeler } from "../Helpers/Vizeler";
 import { Finaller } from "../Helpers/Finaller";
 import { useContext } from "react";
 import { QuizContext } from "../Helpers/Context";
-import { Dersler } from "../Helpers/Dersler";
 import Select from "react-select";
 import AllQuestions from "./AllQuestions";
 import "../Tasarim/sinavOlustur.css";
-
-
+import { SinavSaatleri } from "../Helpers/SinavSaatleri";
 
 export default function SinavOlustur() {
-  const { setSayfaState ,dersAdi, setDersAdi,sinavTuru, setsinavTuru} = useContext(QuizContext);
-  
-  
+  const { setSayfaState, dersAdi, sinavTuru, tempSinavSaat } =
+    useContext(QuizContext);
+
   const [soru, setSoru] = useState("");
   const [cevapA, setCevapA] = useState("");
   const [cevapB, setCevapB] = useState("");
@@ -27,7 +25,6 @@ export default function SinavOlustur() {
   let vizeBool = true;
   let finalBool = true;
 
- 
   const cevaplar = [
     { value: "A", label: "A" },
     { value: "B", label: "B" },
@@ -82,7 +79,7 @@ export default function SinavOlustur() {
     ) {
       alert("Lütfen Tüm Alanları doldurunuz");
     } else {
-      if (sinavTuru === "vize") {
+      if (sinavTuru === "Vize") {
         Vizeler.forEach((element) => {
           if (element.ders === dersAdi) {
             vizeBool = false;
@@ -117,7 +114,7 @@ export default function SinavOlustur() {
           setCevapD("");
           setCevapE("");
         }
-      } else if (sinavTuru === "final") {
+      } else if (sinavTuru === "Final") {
         Finaller.forEach((element) => {
           if (element.ders === dersAdi) {
             finalBool = false;
@@ -158,27 +155,29 @@ export default function SinavOlustur() {
   }
 
   function sinaviTamamla() {
+    console.log(SinavSaatleri);
+    console.log(tempSinavSaat);
+    SinavSaatleri.push(tempSinavSaat);
     console.log(tempFinal, tempVize);
     if (tempVize[0] === undefined && tempFinal[0] === undefined) {
       alert("Sınav Oluşturulamadı.");
     } else {
-      if (sinavTuru === "vize") {
+      if (sinavTuru === "Vize") {
         Vizeler.push(...tempVize);
         alert("Sınav oluşturuldu");
         settempVize([]);
-      } else if (sinavTuru === "final") {
+        setSayfaState("Profil");
+      } else if (sinavTuru === "Final") {
         Finaller.push(...tempFinal);
         alert("Sınav oluşturuldu");
         settempFinal([]);
+        setSayfaState("Profil");
       }
     }
   }
 
   return (
     <div>
-   
-      
-      
       <div className="cevaplar">
         <label>Soru</label>
         <input
@@ -226,14 +225,10 @@ export default function SinavOlustur() {
         />
       </div>
       <div>
-        
         <button onClick={soruyuEkle}>Soruyu Ekle</button>
         <button onClick={sinaviTamamla}>Sınavı Tamanla</button>
-        
       </div>
       {questionArray}
-      
-
     </div>
   );
 }

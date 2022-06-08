@@ -1,33 +1,32 @@
-import React, { useState, useContext, useEffect, useLayoutEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Vizeler } from "../Helpers/Vizeler";
 import { QuizContext } from "../Helpers/Context";
 import { Finaller } from "../Helpers/Finaller";
 import "../Tasarim/sinav.css";
-import { Ogrenciler } from "../Helpers/Ogrenciler";
-import AnaSayfa from "./AnaSayfa";
+import { SinavSaatleri } from "../Helpers/SinavSaatleri";
 export default function Sinav() {
   const [currentSoru, setCurrentSoru] = useState(0);
   const [secilenCevap, setSecilenCevap] = useState("");
   const [cevaplar, setCevaplar] = useState([]);
   const [temp, setTemp] = useState(0);
   const [boolean, setBoolean] = useState(true);
+  let tempTarih = "";
 
   const {
     setSayfaState,
     chosenDers,
     chosenTur,
-    eposta,
-    tumCevaplar,
     setTumCevaplar,
-    setStudentName,
-    setStudentSurname,
     studentName,
     studentSurname,
-    results,
-    setResults,
-    data,
     setData,
   } = useContext(QuizContext);
+
+  SinavSaatleri.forEach((element) => {
+    if (element.ders === chosenDers && element.sinavTuru === chosenTur) {
+      tempTarih = element.bitisZamani;
+    }
+  });
 
   let istenilenSinav = [];
 
@@ -46,12 +45,17 @@ export default function Sinav() {
   }
 
   const nextQuestion = () => {
+    var date = new Date();
+    var isoDateTime = new Date(
+      date.getTime() - date.getTimezoneOffset() * 60000
+    ).toISOString();
+
     if (temp === 0) {
       setCevaplar((oldarray) => [
         ...oldarray,
         {
           adi: studentName,
-          soyadi:studentSurname,
+          soyadi: studentSurname,
           ders: chosenDers,
           sinavTuru: chosenTur,
           soru: currentSoru + 1,
@@ -61,17 +65,11 @@ export default function Sinav() {
       ]);
       setTemp(1);
     } else if (cevaplar[currentSoru] === undefined) {
-      console.log(cevaplar[currentSoru]);
-
-      console.log("buraya girdim");
-
-      console.log(currentSoru + 1);
-      // trueye alıp bıraktım
       setCevaplar((oldarray) => [
         ...oldarray,
         {
           adi: studentName,
-          soyadi:studentSurname,
+          soyadi: studentSurname,
           ders: chosenDers,
           sinavTuru: chosenTur,
           soru: currentSoru + 1,
@@ -81,9 +79,6 @@ export default function Sinav() {
       ]);
     }
     setCurrentSoru(currentSoru + 1);
-    // if (istenilenSinav[currentSoru+1].cevap === secilenCevap) {
-    //  setSonuc(sonuc + 1);
-    //}
     let a = 0;
     cevaplar.forEach((cevap) => {
       if (cevap.soru === currentSoru + 1) {
@@ -98,6 +93,26 @@ export default function Sinav() {
       }
       a = a + 1;
     });
+
+    if (isoDateTime > tempTarih) {
+      let tempInt = currentSoru;
+      alert("Sinav Süresi Doldu");
+      for (tempInt; tempInt < istenilenSinav.length; tempInt++) {
+        setCevaplar((oldarray) => [
+          ...oldarray,
+          {
+            adi: studentName,
+            soyadi: studentSurname,
+            ders: chosenDers,
+            sinavTuru: chosenTur,
+            soru: tempInt + 1,
+            ogrenciCevabı: "",
+            dogruCevap: istenilenSinav[currentSoru].cevap,
+          },
+        ]);
+      }
+      setBoolean(!boolean);
+    }
   };
   const prevQuestion = () => {
     setCurrentSoru(currentSoru - 1);
@@ -112,7 +127,7 @@ export default function Sinav() {
     if (cevaplar[0] !== undefined) {
       let a = 0;
       let b = cevaplar.length;
-      console.log("useeffecy", b, a);
+      console.log("useeffect", b, a);
       cevaplar.forEach((obje) => {
         console.log(obje.ogrenciCevabı, obje.dogruCevap);
 
@@ -133,9 +148,8 @@ export default function Sinav() {
         },
       ]);
       console.log(b);
-      //setSayfaState("AfterQuiz")
+      setSayfaState("Profil");
     }
-    
   }, [boolean]);
 
   const sonSoru = () => {
@@ -143,7 +157,7 @@ export default function Sinav() {
       ...oldarray,
       {
         adi: studentName,
-        soyadi:studentSurname,
+        soyadi: studentSurname,
         ders: chosenDers,
         sinavTuru: chosenTur,
         soru: currentSoru + 1,
@@ -152,24 +166,7 @@ export default function Sinav() {
       },
     ]);
     setBoolean(!boolean);
-
-    //setSayfaState("AfterQuiz")
   };
-
-  function abialoo() {
-    console.log(cevaplar);
-    console.log(cevaplar[currentSoru + 1]);
-    console.log(currentSoru);
-    console.log(tumCevaplar);
-    //setSayfaState("AnaSayfa");
-    
-    console.log("data",data);
-    console.log(cevaplar.length);
-    setSayfaState("AfterQuiz");
-  }
-  function exit () {
-    setSayfaState("AnaSayfa")
-  }
 
   return (
     <div className="sinav">
@@ -192,20 +189,29 @@ export default function Sinav() {
         </button>
       </div>
       <div className="a">
-      {currentSoru > 0 && <button className="aButton" onClick={prevQuestion}>Önceki Soru</button>}
+        {currentSoru > 0 && (
+          <button className="aButton" onClick={prevQuestion}>
+            Önceki Soru
+          </button>
+        )}
 
-      {currentSoru === 0 && (
-        <button className="aButton" onClick={nextQuestion}>Sıradaki Soru</button>
-      )}
-      {currentSoru > 0 && currentSoru !== istenilenSinav.length - 1 && (
-        <button className="aButton" onClick={nextQuestion}>Sıradaki Soru</button>
-      )}
-     
-      {currentSoru === istenilenSinav.length - 1 && (
-        <button className="aButton" onClick={sonSoru}>Sınavı Bitir</button>
-      )}
+        {currentSoru === 0 && (
+          <button className="aButton" onClick={nextQuestion}>
+            Sıradaki Soru
+          </button>
+        )}
+        {currentSoru > 0 && currentSoru !== istenilenSinav.length - 1 && (
+          <button className="aButton" onClick={nextQuestion}>
+            Sıradaki Soru
+          </button>
+        )}
+
+        {currentSoru === istenilenSinav.length - 1 && (
+          <button className="aButton" onClick={sonSoru}>
+            Sınavı Bitir
+          </button>
+        )}
       </div>
-      
     </div>
   );
 }

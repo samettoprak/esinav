@@ -3,13 +3,14 @@ import { QuizContext } from "../Helpers/Context";
 import "../Tasarim/navBar.css";
 
 const NavBar = () => {
-  const { setSayfaState , eposta,setEposta } = useContext(QuizContext);
+  const { setSayfaState , eposta,setEposta ,setSoruData} = useContext(QuizContext);
 
   const sinavlarPage=()=>{
     setSayfaState("SinavOlusturFirst")
 
 }
 const resultPage = ()=>{
+  setSoruData([])
     setSayfaState("AdminResults")
 }
 

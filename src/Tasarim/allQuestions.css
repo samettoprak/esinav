@@ -1,16 +1,11 @@
 .allX{
     padding-top: 20px;
-    
-
-    
+  
 }
 
 .allAnswers{
     display: flex;
     flex-direction: column;
-    
-    
-   
 
 }
 .allAnswers label{

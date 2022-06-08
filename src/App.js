@@ -8,7 +8,6 @@ import Sinavlarim from "./Components/Sinavlarim";
 import SinavOlustur from "./Components/SinavOlustur";
 import AdminAnaSayfa from "./Components/AdminAnaSayfa";
 import Profil from "./Components/Profil";
-import AfterQuiz from "./Components/AfterQuiz";
 import AdminResults from "./Components/AdminResults";
 import NavBar from "./Components/NavBar"
 import AdminNavBar from "./Components/AdminNavBar"
@@ -16,7 +15,6 @@ import SinavOlusturFirst from "./Components/SinavOlusturFirst";
 
 function App() {
   const [sayfaState, setSayfaState] = useState("AnaSayfa");
-  const [sonuc, setSonuc] = useState(0);
   const [eposta, setEposta] = useState("");
   const [sifre, setSifre] = useState("");
   const [chosenDers, setChosenDers] = useState("");
@@ -30,6 +28,7 @@ function App() {
   const [soruData, setSoruData] = useState([]);
   const [dersAdi, setDersAdi] = useState("");
   const [sinavTuru, setsinavTuru] = useState("");
+  const [tempSinavSaat, setTempSinavSaat] = useState([]);
   
 
   return (
@@ -38,32 +37,7 @@ function App() {
       
       <QuizContext.Provider
         value={{
-          sinavTuru, setsinavTuru,
-          sayfaState,
-          setSayfaState,
-          sonuc,
-          setSonuc,
-          eposta,
-          setEposta,
-          sifre,
-          setSifre,
-          chosenDers,
-          setChosenDers,
-          chosenTur,
-          setChosenTur,
-          tumCevaplar,
-          setTumCevaplar,
-          studentName,
-          setStudentName,
-          studentSurname,
-          setStudentSurname,
-          results,
-          setResults,
-          data,
-          setData,
-          tempAllQuestionsArray,setTempAllQuestionsArray,
-          soruData, setSoruData,
-          dersAdi, setDersAdi
+          tempSinavSaat, setTempSinavSaat,sinavTuru, setsinavTuru,sayfaState,setSayfaState,eposta,setEposta,sifre,setSifre,chosenDers,setChosenDers,chosenTur,setChosenTur,tumCevaplar,setTumCevaplar,studentName,setStudentName,studentSurname,setStudentSurname,results,setResults,data,setData,tempAllQuestionsArray,setTempAllQuestionsArray,soruData, setSoruData,dersAdi, setDersAdi
         }}
       >
         {(sayfaState==="AnaSayfa" || eposta==="admin")?null: <NavBar></NavBar>}
@@ -75,7 +49,6 @@ function App() {
         {sayfaState === "SinavOlustur" && <SinavOlustur />}
         {sayfaState === "AdminAnaSayfa" && <AdminAnaSayfa />}
         {sayfaState === "Profil" && <Profil />}
-        {sayfaState==="AfterQuiz" && <AfterQuiz/>}
         {sayfaState==="AdminResults" && <AdminResults/>}
         {sayfaState==="SinavOlusturFirst" && <SinavOlusturFirst/>}
 

@@ -1,22 +1,22 @@
 export const Dersler = [
     {
-      value: "matematik",
+      value: "Matematik",
       label: "Matematik",
     },
     {
-      value: "fizik",
+      value: "Fizik",
       label: "Fizik",
     },
     {
-      value: "java",
+      value: "Java",
       label: "Java",
     },
     {
-      value: "outocat",
+      value: "Outocat",
       label: "Outocat",
     },
     {
-      value: "enerji",
+      value: "Enerji Üretim Sistemleri",
       label: "Enerji Üretim Sistemleri",
     },
 

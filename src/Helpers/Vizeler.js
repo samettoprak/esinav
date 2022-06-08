@@ -1,6 +1,6 @@
 export const Vizeler = [
   {
-    ders: "matematik",
+    ders: "Matematik",
     soru: "√9 Kaçtır ?",
     cevapA: "-3",
     cevapB: "81",
@@ -10,7 +10,7 @@ export const Vizeler = [
     cevap: "D",
   },
   {
-    ders: "matematik",
+    ders: "Matematik",
     soru: "÷ Hangi işlemi ifade eder ?",
     cevapA: "Toplama",
     cevapB: "Çıkarma",
@@ -20,7 +20,7 @@ export const Vizeler = [
     cevap: "C",
   },
   {
-    ders: "matematik",
+    ders: "Matematik",
     soru: "Dairenin çevresi nasıl hesaplanır ?",
     cevapA: "2.π.r",
     cevapB: "π.r²",

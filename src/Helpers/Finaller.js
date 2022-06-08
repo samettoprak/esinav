@@ -1,6 +1,6 @@
 export const Finaller = [
   {
-    ders:"matematik",
+    ders:"Matematik",
     soru: "finaller nerde",
     cevapA: "marmara",
     cevapB: "iç anadolu",
@@ -11,7 +11,7 @@ export const Finaller = [
     //en kötü tüm soruları iç içe koyarak kullanırım altına ders adı ve türü eklerim
   },
   {
-    ders:"matematik",
+    ders:"Matematik",
     soru: "1+1",
     cevapA: "13",
     cevapB: "2",
@@ -23,7 +23,7 @@ export const Finaller = [
 
     
   }, {
-    ders:"fizik",
+    ders:"Fizik",
     soru: "fizik nerde",
     cevapA: "marmara",
     cevapB: "iç anadolu",
@@ -34,7 +34,7 @@ export const Finaller = [
     //en kötü tüm soruları iç içe koyarak kullanırım altına ders adı ve türü eklerim
   },
   {
-    ders:"fizik",
+    ders:"Fizik",
     soru: "1+fizik",
     cevapA: "13",
     cevapB: "2",

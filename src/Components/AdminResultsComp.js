@@ -6,18 +6,11 @@ import { Finaller } from "../Helpers/Finaller";
 import AllQuestions from "./AllQuestions";
 
 export default function AdminResultsComp(props) {
-  const {
-    tumCevaplar,
-    tempAllQuestionsArray,
-    setTempAllQuestionsArray,
-    setSoruData,
-  } = useContext(QuizContext);
+  const { tumCevaplar, setSoruData } = useContext(QuizContext);
+
   const [tempAnswersArray, setTempAnswersArray] = useState([]);
   const [tempQuestionArray, setTempQuestionArray] = useState([]);
   let temp = [];
-
-  //let tempAnswersArray = []; // secilen sınavın cevapalrı
-  //let tempQuestionArray = []; //secilen sınav
 
   function openQueVize() {
     setTempQuestionArray([]);
@@ -32,6 +25,7 @@ export default function AdminResultsComp(props) {
         tempAnswersArray.push(tumCevaplarObj);
       }
     });
+
     Vizeler.forEach((vizelerObj) => {
       if (vizelerObj.ders === props.ders) {
         tempQuestionArray.push(vizelerObj);
@@ -40,26 +34,20 @@ export default function AdminResultsComp(props) {
 
     console.log(tempQuestionArray);
     console.log(tempAnswersArray);
-
     console.log("vize");
-    //secilen sinav
-    //secilen sinavin cevaplari
-    for (let index = 0; index < tempAnswersArray.length; index++) {
 
+    for (let index = 0; index < tempAnswersArray.length; index++) {
       temp.push({
-        soru:tempQuestionArray[index].soru,
-        cevapA:tempQuestionArray[index].cevapA,
-        cevapB:tempQuestionArray[index].cevapB,
-        cevapC:tempQuestionArray[index].cevapC,
-        cevapD:tempQuestionArray[index].cevapD,
-        cevapE:tempQuestionArray[index].cevapE,
+        soru: tempQuestionArray[index].soru,
+        cevapA: tempQuestionArray[index].cevapA,
+        cevapB: tempQuestionArray[index].cevapB,
+        cevapC: tempQuestionArray[index].cevapC,
+        cevapD: tempQuestionArray[index].cevapD,
+        cevapE: tempQuestionArray[index].cevapE,
         cevap: tempAnswersArray[index].dogruCevap,
         ogrenciCevabı: tempAnswersArray[index].ogrenciCevabı,
-      })
-      
+      });
     }
-
-
 
     setSoruData(
       temp.map((i) => (
@@ -73,7 +61,7 @@ export default function AdminResultsComp(props) {
           cevapE={i.cevapE}
           cevap={i.cevap}
           ogrenciCevabı={i.ogrenciCevabı}
-          nope={"nope"}   
+          nope={"nope"}
         ></AllQuestions>
       ))
     );
@@ -100,23 +88,19 @@ export default function AdminResultsComp(props) {
     });
     console.log(tempQuestionArray); //secilen sinav
     console.log(tempAnswersArray); //secilen sinavin cevaplari
-    console.log("final");
+    console.log("Final");
     for (let index = 0; index < tempAnswersArray.length; index++) {
-
       temp.push({
-        soru:tempQuestionArray[index].soru,
-        cevapA:tempQuestionArray[index].cevapA,
-        cevapB:tempQuestionArray[index].cevapB,
-        cevapC:tempQuestionArray[index].cevapC,
-        cevapD:tempQuestionArray[index].cevapD,
-        cevapE:tempQuestionArray[index].cevapE,
+        soru: tempQuestionArray[index].soru,
+        cevapA: tempQuestionArray[index].cevapA,
+        cevapB: tempQuestionArray[index].cevapB,
+        cevapC: tempQuestionArray[index].cevapC,
+        cevapD: tempQuestionArray[index].cevapD,
+        cevapE: tempQuestionArray[index].cevapE,
         cevap: tempAnswersArray[index].dogruCevap,
         ogrenciCevabı: tempAnswersArray[index].ogrenciCevabı,
-      })
-      
+      });
     }
-
-
 
     setSoruData(
       temp.map((i) => (
@@ -130,17 +114,16 @@ export default function AdminResultsComp(props) {
           cevapE={i.cevapE}
           cevap={i.cevap}
           ogrenciCevabı={i.ogrenciCevabı}
-          nope={"nope"}   
+          nope={"nope"}
         ></AllQuestions>
       ))
     );
   }
 
-
   return (
     <tr className="arComp">
       <td>{props.ad + " " + props.soyad}</td>
-     
+
       <td>{props.ders}</td>
       <td>
         <div className="sinavButton">
