@@ -155,10 +155,9 @@ export default function SinavOlustur() {
   }
 
   function sinaviTamamla() {
-    console.log(SinavSaatleri);
-    console.log(tempSinavSaat);
+
     SinavSaatleri.push(tempSinavSaat);
-    console.log(tempFinal, tempVize);
+
     if (tempVize[0] === undefined && tempFinal[0] === undefined) {
       alert("Sınav Oluşturulamadı.");
     } else {
@@ -177,7 +176,7 @@ export default function SinavOlustur() {
   }
 
   return (
-    <div>
+    <div className="olustur">
       <div className="cevaplar">
         <label>Soru</label>
         <input

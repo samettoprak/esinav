@@ -1,49 +1,22 @@
 export const Finaller = [
   {
-    ders:"Matematik",
-    soru: "finaller nerde",
-    cevapA: "marmara",
-    cevapB: "iç anadolu",
-    cevapC: "güney",
-    cevapD: "mars",
-    cevapE: "kars",
-    cevap: "B",
-    //en kötü tüm soruları iç içe koyarak kullanırım altına ders adı ve türü eklerim
+    ders: "Matematik",
+    soru: "2X+4=8 , X=?",
+    cevapA: "1/2",
+    cevapB: "16",
+    cevapC: "2",
+    cevapD: "8",
+    cevapE: "4",
+    cevap: "C",
   },
   {
-    ders:"Matematik",
-    soru: "1+1",
-    cevapA: "13",
-    cevapB: "2",
-    cevapC: "1",
-    cevapD: "4",
-    cevapE: "kars",
-    cevap: "B",
-
-
-    
-  }, {
-    ders:"Fizik",
-    soru: "fizik nerde",
-    cevapA: "marmara",
-    cevapB: "iç anadolu",
-    cevapC: "güney",
-    cevapD: "mars",
-    cevapE: "kars",
-    cevap: "B",
-    //en kötü tüm soruları iç içe koyarak kullanırım altına ders adı ve türü eklerim
-  },
-  {
-    ders:"Fizik",
-    soru: "1+fizik",
-    cevapA: "13",
-    cevapB: "2",
-    cevapC: "1",
-    cevapD: "4",
-    cevapE: "kars",
-    cevap: "B",
-
-
-    
+    ders: "Matematik",
+    soru: "Üçgenin iç açıları toplamı kaçtır ?",
+    cevapA: "360",
+    cevapB: "90",
+    cevapC: "45",
+    cevapD: "180",
+    cevapE: "540",
+    cevap: "D",
   },
 ];

@@ -16,20 +16,3 @@
 .mainprofil{
     margin-top:10%;
 }
-.sinavFirst{
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.sinavFirstButton{
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-}
-.sinavFirstButton button{
-    margin: 5px;
-    margin-top: 10px;
-}

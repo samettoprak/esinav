@@ -13,7 +13,7 @@
 }
 
 .content-table thead tr{
-    background-color: #000000;
+    background-color: darkcyan;
     color: #ffffff;
     text-align: left;
     font-weight: bold;
@@ -28,10 +28,10 @@
 }
 .content-table tbody tr:nth-of-type(even){
     background-color: #f3f3f3;  font-weight: bold;
-    color:grey ;
+    color:rgba(0,0,0,0.7) ;
 }
 .content-table tbody tr:last-of-type{
-    border-bottom: 5px solid #000000;
+    border-bottom: 5px solid rgb(0, 68, 68);
 }
 .sinavButton{
     display: flex;
@@ -43,11 +43,11 @@
 .sinavButton button{
     border: none;
     border-radius: 10px;
-    background-color: #3f0227;
+    background-color: darkcyan;
     color: #ffffff;
     
 
 }
 .sinavButton button:hover{
-    background-color: #663552;
+    background-color: cadetblue;
 }

@@ -18,6 +18,7 @@ export default function Sinavlarim() {
     tumCevaplar,
   } = useContext(QuizContext);
 
+
   let temp = false;
   let temp2 = false;
 
@@ -31,7 +32,7 @@ export default function Sinavlarim() {
     if (ogrenci.eposta === eposta) {
       ogrenci.dersler.forEach((ders) => {
         takenLessons.push(
-          <button onClick={() => setChosenDers(ders)} key={ders}>
+          <button  className={chosenDers === ders ? "fokus" : ""} onClick={() => setChosenDers(ders)} key={ders}>
             {ders}
           </button>
         );

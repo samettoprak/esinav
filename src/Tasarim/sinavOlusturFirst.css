@@ -1,0 +1,62 @@
+.sinavOlusturFirst {
+  background-color: lightseagreen;
+  width: 500px;
+  height: 500px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.sofDers {
+  margin: 10px;
+  padding: 10px;
+  background-color: darkcyan;
+  border-radius: 10px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 10px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.sinavOlusturFirst label {
+  color: white;
+  font-size: 20px;
+}
+
+.sofTur {
+  margin: 10px;
+  padding: 10px;
+  background-color: darkcyan;
+  border-radius: 10px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 10px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.sofSaat {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  background-color: darkcyan;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 10px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.sinavFirstButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+.sinavFirstButton button {
+  margin-right: 10px;
+  border: none;
+  background-color: white;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 10px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.sinavFirstButton button:hover{
+    background-color: cadetblue;
+}
