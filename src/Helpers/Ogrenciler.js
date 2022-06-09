@@ -9,8 +9,8 @@ export const Ogrenciler = [
   {
     ad: "Samet",
     soyad: "Toprak",
-    eposta: "samet",
-    sifre: "samet",
+    eposta: "samettoprak@trakya.edu.tr",
+    sifre: "samet123",
     dersler: ["Matematik", "Fizik", "Java"],
   },
   {
