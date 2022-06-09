@@ -16,6 +16,7 @@ export default function Sinavlarim() {
     studentSurname,
     tumCevaplar,
   } = useContext(QuizContext);
+  
 
   let temp = false;
   let temp2 = false;
