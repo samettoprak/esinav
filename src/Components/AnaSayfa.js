@@ -11,12 +11,8 @@ export default function AnaSayfa() {
   console.log(eposta);
   function kontrol() {
     Ogrenciler.forEach((ogrenci) => {
-      if (ogrenci.eposta === eposta && ogrenci.sifre === sifre) {
-        
-          
-          
+      if (ogrenci.eposta === eposta && ogrenci.sifre === sifre) {        
           setSayfaState("Profil");
-        
       }
     });
   }
