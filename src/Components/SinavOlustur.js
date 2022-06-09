@@ -155,7 +155,6 @@ export default function SinavOlustur() {
   }
 
   function sinaviTamamla() {
-
     SinavSaatleri.push(tempSinavSaat);
 
     if (tempVize[0] === undefined && tempFinal[0] === undefined) {
@@ -225,7 +224,7 @@ export default function SinavOlustur() {
       </div>
       <div>
         <button onClick={soruyuEkle}>Soruyu Ekle</button>
-        <button onClick={sinaviTamamla}>Sınavı Tamanla</button>
+        <button onClick={sinaviTamamla}>Sınavı Tamamla</button>
       </div>
       {questionArray}
     </div>

@@ -2,8 +2,6 @@ import { useContext, useState } from "react";
 import { QuizContext } from "../Helpers/Context";
 import "../Tasarim/allQuestions.css";
 const AllQuestions = (props) => {
-  let wrongAns = "";
-  let corAns = "";
   let temp = "";
 
   if (props.cevap === props.ogrenciCevabı) {
@@ -32,7 +30,7 @@ const AllQuestions = (props) => {
           <label id="E" className={props.ogrenciCevabı === "E" ? temp : null}>
             E : {props.cevapE}
           </label>
-          {props.cevap === props.ogrenciCevabı? null : (
+          {props.cevap === props.ogrenciCevabı ? null : (
             <label>Doğru cevap : {props.cevap}</label>
           )}
         </div>

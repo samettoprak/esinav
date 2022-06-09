@@ -7,12 +7,10 @@ import { Ogrenciler } from "../Helpers/Ogrenciler";
 export default function AnaSayfa() {
   const { setSayfaState, eposta, setEposta, sifre, setSifre } =
     useContext(QuizContext);
-
-  console.log(eposta);
   function kontrol() {
     Ogrenciler.forEach((ogrenci) => {
-      if (ogrenci.eposta === eposta && ogrenci.sifre === sifre) {        
-          setSayfaState("Profil");
+      if (ogrenci.eposta === eposta && ogrenci.sifre === sifre) {
+        setSayfaState("Profil");
       }
     });
   }
@@ -20,10 +18,17 @@ export default function AnaSayfa() {
   return (
     <div className="Menu">
       <img className="Logo" src={require("../Helpers/tulogo.png")}></img>
-      <label>Trakya Üniversitesi Sınav Uygulaması</label>
+      <label>Trakya Üniversitesi Online Sınav Uygulaması</label>
       <div className="menudiv">
-      <input placeholder="e-posta"onChange={(e) => setEposta(e.target.value)}></input>
-      <input placeholder="şifre" onChange={(e) => setSifre(e.target.value)} type="password"></input>
+        <input
+          placeholder="e-posta"
+          onChange={(e) => setEposta(e.target.value)}
+        ></input>
+        <input
+          placeholder="şifre"
+          onChange={(e) => setSifre(e.target.value)}
+          type="password"
+        ></input>
       </div>
       <button onClick={kontrol}>Giriş Yap</button>
     </div>

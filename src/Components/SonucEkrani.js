@@ -6,14 +6,12 @@ import AdminResultsComp from "./AdminResultsComp";
 export default function SonucEkrani() {
   const { studentName, tumCevaplar, data, studentSurname, soruData } =
     useContext(QuizContext);
-
   let tempArray = [];
   let tempCevapArray = [];
   let tempCompArray = [];
   function float2int(value) {
     return value | 0;
   }
-
   Ogrenciler.forEach((ogrObject) => {
     if (ogrObject.ad === studentName) {
       ogrObject.dersler.forEach((dersObject) => {
@@ -27,7 +25,6 @@ export default function SonucEkrani() {
       });
     }
   });
-
   data.forEach((dataObj) => {
     tempArray.forEach((taObj) => {
       if (
@@ -45,13 +42,11 @@ export default function SonucEkrani() {
       }
     });
   });
-
   tumCevaplar.forEach((element) => {
     if (element.adi === studentName) {
       tempCevapArray.push(element);
     }
   });
-
   tempCompArray = tempArray.map((e) => (
     <AdminResultsComp
       ders={e.ders}
@@ -61,7 +56,6 @@ export default function SonucEkrani() {
       finalNot={e.finalNot}
     />
   ));
-
   return (
     <div>
       <table className="content-table">

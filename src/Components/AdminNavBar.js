@@ -7,22 +7,18 @@ const NavBar = () => {
 
   const sinavlarPage=()=>{
     setSayfaState("SinavOlusturFirst")
-
 }
 const resultPage = ()=>{
   setSoruData([])
     setSayfaState("AdminResults")
 }
-
 const profil = ()=>{
   setSayfaState("Profil")
 }
-
 const exit = ()=>{
     setEposta("")
     setSayfaState("AnaSayfa")
 }
-
 
   return (
     <div className="navBar">

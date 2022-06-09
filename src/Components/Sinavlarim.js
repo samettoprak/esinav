@@ -4,7 +4,6 @@ import { QuizContext } from "../Helpers/Context";
 import "../Tasarim/sinavlarim.css";
 import { SinavSaatleri } from "../Helpers/SinavSaatleri";
 
-
 export default function Sinavlarim() {
   const {
     eposta,
@@ -17,7 +16,6 @@ export default function Sinavlarim() {
     studentSurname,
     tumCevaplar,
   } = useContext(QuizContext);
-
 
   let temp = false;
   let temp2 = false;
@@ -32,7 +30,11 @@ export default function Sinavlarim() {
     if (ogrenci.eposta === eposta) {
       ogrenci.dersler.forEach((ders) => {
         takenLessons.push(
-          <button  className={chosenDers === ders ? "fokus" : ""} onClick={() => setChosenDers(ders)} key={ders}>
+          <button
+            className={chosenDers === ders ? "fokus" : ""}
+            onClick={() => setChosenDers(ders)}
+            key={ders}
+          >
             {ders}
           </button>
         );
@@ -41,9 +43,7 @@ export default function Sinavlarim() {
   });
 
   function vizeyeGit() {
-    console.log(SinavSaatleri)
     setChosenTur("Vize");
-    console.log(tumCevaplar);
   }
 
   function finaleGit() {
@@ -60,9 +60,7 @@ export default function Sinavlarim() {
         temp2 = true;
       }
     });
-
     if (!temp2) {
-      console.log(SinavSaatleri);
       SinavSaatleri.forEach((element) => {
         if (
           element.ders === chosenDers &&
@@ -70,9 +68,7 @@ export default function Sinavlarim() {
           element.baslamaZamani < isoDateTime &&
           isoDateTime < element.bitisZamani
         ) {
-          console.log(element.baslamaZamani, isoDateTime, element.bitisZamani);
           temp = true;
-          console.log(temp);
         }
       });
       if (temp) {
@@ -80,11 +76,10 @@ export default function Sinavlarim() {
         temp = false;
       } else {
         alert("Bu sınav şuan açık değil");
-        console.log(isoDateTime);
       }
     } else {
       alert("Kullanıcı bu sınava önceden girmiş.");
-      temp2=false
+      temp2 = false;
     }
   }
   return (

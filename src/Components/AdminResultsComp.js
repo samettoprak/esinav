@@ -31,11 +31,6 @@ export default function AdminResultsComp(props) {
         tempQuestionArray.push(vizelerObj);
       }
     });
-
-    console.log(tempQuestionArray);
-    console.log(tempAnswersArray);
-    console.log("vize");
-
     for (let index = 0; index < tempAnswersArray.length; index++) {
       temp.push({
         soru: tempQuestionArray[index].soru,
@@ -48,7 +43,6 @@ export default function AdminResultsComp(props) {
         ogrenciCevabı: tempAnswersArray[index].ogrenciCevabı,
       });
     }
-
     setSoruData(
       temp.map((i) => (
         <AllQuestions
@@ -86,9 +80,6 @@ export default function AdminResultsComp(props) {
         tempQuestionArray.push(finallerObj);
       }
     });
-    console.log(tempQuestionArray); //secilen sinav
-    console.log(tempAnswersArray); //secilen sinavin cevaplari
-    console.log("Final");
     for (let index = 0; index < tempAnswersArray.length; index++) {
       temp.push({
         soru: tempQuestionArray[index].soru,
@@ -123,7 +114,6 @@ export default function AdminResultsComp(props) {
   return (
     <tr className="arComp">
       <td>{props.ad + " " + props.soyad}</td>
-
       <td>{props.ders}</td>
       <td>
         <div className="sinavButton">

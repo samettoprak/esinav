@@ -29,7 +29,6 @@ export default function Sinav() {
   });
 
   let istenilenSinav = [];
-
   if (chosenTur === "Vize") {
     for (let i = 0; i < Vizeler.length; i++) {
       if (Vizeler[i].ders === chosenDers) {
@@ -52,7 +51,6 @@ export default function Sinav() {
       var isoDateTime = new Date(
         date.getTime() - date.getTimezoneOffset() * 60000
       ).toISOString();
-
       if (temp === 0) {
         setCevaplar((oldarray) => [
           ...oldarray,
@@ -94,12 +92,9 @@ export default function Sinav() {
         }
         a = a + 1;
       });
-
       if (isoDateTime > tempTarih) {
         let tempInt = currentSoru + 1;
         alert("Sinav Süresi Doldu");
-        console.log(istenilenSinav.length, currentSoru);
-
         for (tempInt; tempInt < istenilenSinav.length; tempInt++) {
           setCevaplar((oldarray) => [
             ...oldarray,
@@ -133,15 +128,12 @@ export default function Sinav() {
     if (cevaplar[0] !== undefined) {
       let a = 0;
       let b = cevaplar.length;
-      console.log("useeffect", b, a);
-      cevaplar.forEach((obje) => {
-        console.log(obje.ogrenciCevabı, obje.dogruCevap);
 
+      cevaplar.forEach((obje) => {
         if (obje.ogrenciCevabı === obje.dogruCevap) {
           a = a + 1;
         }
       });
-      console.log(a);
       b = (a / b) * 100;
       setData((oldData) => [
         ...oldData,
@@ -153,7 +145,6 @@ export default function Sinav() {
           puan: b,
         },
       ]);
-      console.log(b);
       setSayfaState("Profil");
     }
   }, [boolean]);
@@ -177,9 +168,7 @@ export default function Sinav() {
   return (
     <div className="sinavOut">
       <div className="sinav">
-      
-          <h1 className="soru">{istenilenSinav[currentSoru].soru}</h1>
-        
+        <h1 className="soru">{istenilenSinav[currentSoru].soru}</h1>
         <div className="cevap">
           <button onClick={() => setSecilenCevap("A")}>
             {istenilenSinav[currentSoru].cevapA}
@@ -203,7 +192,6 @@ export default function Sinav() {
               Önceki Soru
             </button>
           )}
-
           {currentSoru === 0 && (
             <button className="aButton" onClick={nextQuestion}>
               Sıradaki Soru
@@ -214,7 +202,6 @@ export default function Sinav() {
               Sıradaki Soru
             </button>
           )}
-
           {currentSoru === istenilenSinav.length - 1 && (
             <button className="aButton" onClick={sonSoru}>
               Sınavı Bitir
